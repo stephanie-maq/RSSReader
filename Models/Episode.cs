@@ -4,8 +4,10 @@ using System.Text;
 
 namespace Models
 {
-    class Episode
+    public class Episode
     {
+        private string name { get; }
+        private string description { get; }
 
     }
 }
