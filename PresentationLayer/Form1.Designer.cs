@@ -32,10 +32,10 @@ namespace PresentationLayer
             this.lvBokLista = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -88,6 +88,18 @@ namespace PresentationLayer
             this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader2.Width = 152;
             // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Frekvens";
+            this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader3.Width = 81;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Kategori";
+            this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader4.Width = 64;
+            // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(25, 186);
@@ -105,18 +117,6 @@ namespace PresentationLayer
             this.label1.TabIndex = 4;
             this.label1.Text = "URL:";
             this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Frekvens";
-            this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader3.Width = 81;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Kategori";
-            this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader4.Width = 64;
             // 
             // comboBox1
             // 
@@ -361,6 +361,7 @@ namespace PresentationLayer
             this.Controls.Add(this.lvBokLista);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
