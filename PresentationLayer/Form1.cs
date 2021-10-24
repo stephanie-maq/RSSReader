@@ -66,5 +66,15 @@ namespace PresentationLayer
         {
 
         }
+
+        private void listBox1_SelectedIndexChanged_2(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

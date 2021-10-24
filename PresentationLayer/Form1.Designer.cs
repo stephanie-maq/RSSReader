@@ -32,10 +32,10 @@ namespace PresentationLayer
             this.lvBokLista = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -88,6 +88,18 @@ namespace PresentationLayer
             this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader2.Width = 152;
             // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Frekvens";
+            this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader3.Width = 81;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Kategori";
+            this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader4.Width = 64;
+            // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(25, 186);
@@ -105,18 +117,6 @@ namespace PresentationLayer
             this.label1.TabIndex = 4;
             this.label1.Text = "URL:";
             this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Frekvens";
-            this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader3.Width = 81;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Kategori";
-            this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader4.Width = 64;
             // 
             // comboBox1
             // 
@@ -188,10 +188,12 @@ namespace PresentationLayer
             // 
             // LBAvsnitt
             // 
+            this.LBAvsnitt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.LBAvsnitt.FormattingEnabled = true;
             this.LBAvsnitt.Location = new System.Drawing.Point(28, 288);
             this.LBAvsnitt.Name = "LBAvsnitt";
-            this.LBAvsnitt.Size = new System.Drawing.Size(405, 134);
+            this.LBAvsnitt.Size = new System.Drawing.Size(405, 186);
             this.LBAvsnitt.TabIndex = 12;
             this.LBAvsnitt.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged_1);
             // 
@@ -228,10 +230,13 @@ namespace PresentationLayer
             // 
             // textBox2
             // 
+            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox2.Location = new System.Drawing.Point(492, 288);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(267, 134);
+            this.textBox2.Size = new System.Drawing.Size(396, 187);
             this.textBox2.TabIndex = 16;
             this.textBox2.Text = "Beskrivning av avsnittet...";
             // 
@@ -248,17 +253,22 @@ namespace PresentationLayer
             // 
             // listBox1
             // 
+            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(507, 32);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(252, 95);
+            this.listBox1.Size = new System.Drawing.Size(381, 95);
             this.listBox1.TabIndex = 18;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged_2);
             // 
             // textBox3
             // 
+            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox3.Location = new System.Drawing.Point(507, 143);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(252, 20);
+            this.textBox3.Size = new System.Drawing.Size(381, 20);
             this.textBox3.TabIndex = 19;
             // 
             // button4
@@ -297,7 +307,7 @@ namespace PresentationLayer
             this.label8.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label8.Location = new System.Drawing.Point(461, 9);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(2, 416);
+            this.label8.Size = new System.Drawing.Size(2, 492);
             this.label8.TabIndex = 23;
             // 
             // label9
@@ -308,7 +318,7 @@ namespace PresentationLayer
             this.label9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label9.Location = new System.Drawing.Point(461, 216);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(339, 2);
+            this.label9.Size = new System.Drawing.Size(448, 2);
             this.label9.TabIndex = 24;
             // 
             // label10
@@ -333,7 +343,7 @@ namespace PresentationLayer
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(817, 463);
+            this.ClientSize = new System.Drawing.Size(938, 539);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.label9);
@@ -361,6 +371,7 @@ namespace PresentationLayer
             this.Controls.Add(this.lvBokLista);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
