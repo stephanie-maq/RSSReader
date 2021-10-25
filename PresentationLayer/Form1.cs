@@ -7,13 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BuisnessLayer;
+using static System.Windows.Forms.ListViewItem;
 
 namespace PresentationLayer
 {
     public partial class Form1 : Form
     {
+        private Controller controller;
+
         public Form1()
         {
+            controller = new Controller();
             InitializeComponent();
         }
 
@@ -42,9 +47,18 @@ namespace PresentationLayer
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void newPodcast_Click(object sender, EventArgs e)
         {
+            var podcast = controller.FetchPodcast(urlBox.Text);
 
+            ListViewItem podcastView = new ListViewItem("#" + podcast.NumberOfEpisodes);
+            ListViewSubItem nameView = new ListViewSubItem(podcastView, podcast.Name());
+
+            podcastView.SubItems.Add(nameView);
+
+            podcastsView.FullRowSelect = true;
+
+            podcastsView.Items.Add(podcastView);
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -73,6 +87,11 @@ namespace PresentationLayer
         }
 
         private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void urlBox_TextChanged(object sender, EventArgs e)
         {
 
         }

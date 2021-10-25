@@ -8,13 +8,14 @@ namespace Models
         public TimeSpan UpdateFrequency;
         public string Category;
         public bool IsSaved;
-        public int NumberOfEpisodes;
+        public int NumberOfEpisodes { get; }
         public List<Episode> Episodes;
-        private string text;
 
-        public Podcast(string text)
+        public Podcast(string name, List<Episode> episodes)
         {
-            this.text = text;
+            this.name = name;
+            Episodes = episodes;
+            NumberOfEpisodes = episodes.Count;
         }
     }
 }

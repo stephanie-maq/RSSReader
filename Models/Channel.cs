@@ -2,7 +2,9 @@
 {
     public abstract class Channel
     {
-        public string name { get; }
-        public string url { get; }
+        protected string name;
+        protected string url;
+
+        public string Name() { return name; }
     }
 }

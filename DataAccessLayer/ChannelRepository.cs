@@ -8,11 +8,11 @@ using System.Linq;
 
 namespace DataAccessLayer
 {
-    public class Foo
+    public class ChannelRepository : IRepository<Channel>
     {
-        public static Podcast LinkReader(string link)
+        public Channel FetchFromUrl(string url)
         {
-            XmlReader reader = XmlReader.Create(link);
+            XmlReader reader = XmlReader.Create(url);
             SyndicationFeed feed = SyndicationFeed.Load(reader);
 
             List<Episode> episodes = new List<Episode>();
@@ -22,8 +22,7 @@ namespace DataAccessLayer
                 .ToList()
                 .ForEach(item => episodes.Add(new Episode(item.Title.Text, item.Summary.Text)));
 
-            Podcast podcast = new Podcast(feed.Title.Text);
-            podcast.Episodes = episodes;
+            Podcast podcast = new Podcast(feed.Title.Text, episodes);
 
             return podcast;
         }
