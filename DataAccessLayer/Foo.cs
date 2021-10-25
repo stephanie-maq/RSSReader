@@ -10,7 +10,7 @@ namespace DataAccessLayer
 {
     public class Foo
     {
-        public static Podcast LinkReader(string link, TimeSpan refresh, string category)
+        public static Podcast LinkReader(string link)
         {
             XmlReader reader = XmlReader.Create(link);
             SyndicationFeed feed = SyndicationFeed.Load(reader);
