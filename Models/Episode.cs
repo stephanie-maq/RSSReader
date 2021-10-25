@@ -4,10 +4,15 @@ using System.Text;
 
 namespace Models
 {
-    public class Episode
+    public class Episode : Item
     {
-        private string name { get; }
-        private string description { get; }
+        private string name;
+        private string descritpion;
 
+        public Episode(string name, string descritpion)
+        {
+            this.name = name;
+            this.descritpion = descritpion;
+        }
     }
 }

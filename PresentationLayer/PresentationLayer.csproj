@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-	  <ProjectGuid>{DF36A2BC-030C-4B9C-AFBC-09E6F12DD593}</ProjectGuid>
+    <ProjectGuid>{DF36A2BC-030C-4B9C-AFBC-09E6F12DD593}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-	  <RootNamespace>PresentationLayer</RootNamespace>
-	  <AssemblyName>PresentationLayer</AssemblyName>
+    <RootNamespace>PresentationLayer</RootNamespace>
+    <AssemblyName>PresentationLayer</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -78,6 +78,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BuisnessLayer\BuisnessLayer.csproj">
+      <Project>{1829cd7a-a8e2-40b4-b507-70a65f39f36f}</Project>
+      <Name>BuisnessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{b7597ca5-87b8-4929-a4f3-062244cd4b03}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
