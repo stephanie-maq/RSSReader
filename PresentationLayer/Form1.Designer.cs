@@ -36,10 +36,10 @@ namespace PresentationLayer
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.urlBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.categoryDropdown = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.updateFrequencyDropdown = new System.Windows.Forms.ComboBox();
             this.newPodcast = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -49,11 +49,11 @@ namespace PresentationLayer
             this.label6 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.categoriesView = new System.Windows.Forms.ListBox();
+            this.categoryTextBox = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.newCategory = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -119,14 +119,14 @@ namespace PresentationLayer
             this.label1.Text = "URL:";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // comboBox1
+            // categoryDropdown
             // 
-            this.comboBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(339, 185);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(94, 21);
-            this.comboBox1.TabIndex = 5;
+            this.categoryDropdown.BackColor = System.Drawing.SystemColors.Window;
+            this.categoryDropdown.FormattingEnabled = true;
+            this.categoryDropdown.Location = new System.Drawing.Point(339, 185);
+            this.categoryDropdown.Name = "categoryDropdown";
+            this.categoryDropdown.Size = new System.Drawing.Size(94, 21);
+            this.categoryDropdown.TabIndex = 5;
             // 
             // label2
             // 
@@ -150,14 +150,15 @@ namespace PresentationLayer
             this.label3.Text = "Uppdateringsfrekvens:";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
-            // comboBox2
+            // updateFrequencyDropdown
             // 
-            this.comboBox2.BackColor = System.Drawing.SystemColors.Window;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(198, 185);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(132, 21);
-            this.comboBox2.TabIndex = 7;
+            this.updateFrequencyDropdown.BackColor = System.Drawing.SystemColors.Window;
+            this.updateFrequencyDropdown.FormattingEnabled = true;
+            this.updateFrequencyDropdown.Location = new System.Drawing.Point(198, 185);
+            this.updateFrequencyDropdown.Name = "updateFrequencyDropdown";
+            this.updateFrequencyDropdown.Size = new System.Drawing.Size(132, 21);
+            this.updateFrequencyDropdown.TabIndex = 7;
+            this.updateFrequencyDropdown.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // newPodcast
             // 
@@ -252,25 +253,25 @@ namespace PresentationLayer
             this.label7.Text = "Kategorier:";
             this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
-            // listBox1
+            // categoriesView
             // 
-            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.categoriesView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(507, 32);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(381, 95);
-            this.listBox1.TabIndex = 18;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged_2);
+            this.categoriesView.FormattingEnabled = true;
+            this.categoriesView.Location = new System.Drawing.Point(507, 32);
+            this.categoriesView.Name = "categoriesView";
+            this.categoriesView.Size = new System.Drawing.Size(381, 95);
+            this.categoriesView.TabIndex = 18;
+            this.categoriesView.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged_2);
             // 
-            // textBox3
+            // categoryTextBox
             // 
-            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.categoryTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox3.Location = new System.Drawing.Point(507, 143);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(381, 20);
-            this.textBox3.TabIndex = 19;
+            this.categoryTextBox.Location = new System.Drawing.Point(507, 143);
+            this.categoryTextBox.Name = "categoryTextBox";
+            this.categoryTextBox.Size = new System.Drawing.Size(381, 20);
+            this.categoryTextBox.TabIndex = 19;
             // 
             // button4
             // 
@@ -290,15 +291,15 @@ namespace PresentationLayer
             this.button5.Text = "Spara";
             this.button5.UseVisualStyleBackColor = true;
             // 
-            // button6
+            // newCategory
             // 
-            this.button6.Location = new System.Drawing.Point(508, 169);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 20;
-            this.button6.Text = "Ny kategori";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.newCategory.Location = new System.Drawing.Point(508, 169);
+            this.newCategory.Name = "newCategory";
+            this.newCategory.Size = new System.Drawing.Size(75, 23);
+            this.newCategory.TabIndex = 20;
+            this.newCategory.Text = "Ny kategori";
+            this.newCategory.UseVisualStyleBackColor = true;
+            this.newCategory.Click += new System.EventHandler(this.newCategory_Click);
             // 
             // label8
             // 
@@ -351,9 +352,9 @@ namespace PresentationLayer
             this.Controls.Add(this.label8);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button5);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.newCategory);
+            this.Controls.Add(this.categoryTextBox);
+            this.Controls.Add(this.categoriesView);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label6);
@@ -364,9 +365,9 @@ namespace PresentationLayer
             this.Controls.Add(this.button2);
             this.Controls.Add(this.newPodcast);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.updateFrequencyDropdown);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.categoryDropdown);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.urlBox);
             this.Controls.Add(this.podcastsView);
@@ -387,10 +388,10 @@ namespace PresentationLayer
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox categoryDropdown;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox updateFrequencyDropdown;
         private System.Windows.Forms.Button newPodcast;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
@@ -400,11 +401,11 @@ namespace PresentationLayer
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.ListBox categoriesView;
+        private System.Windows.Forms.TextBox categoryTextBox;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button newCategory;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
