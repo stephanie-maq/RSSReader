@@ -3,14 +3,18 @@ using System.Collections.Generic;
 
 namespace Models
 {
-    public class Podcast
+    public class Podcast : Channel
     {
-        private string name { get; set; }
-        private TimeSpan updateFrequency;
-        private List<string> category;
-        private bool isSaved;
-        private int numberOfEpisodes;
-        private Uri url;
-        private List<Episode> episodes;
+        public TimeSpan UpdateFrequency;
+        public string Category;
+        public bool IsSaved;
+        public int NumberOfEpisodes;
+        public List<Episode> Episodes;
+        private string text;
+
+        public Podcast(string text)
+        {
+            this.text = text;
+        }
     }
 }
