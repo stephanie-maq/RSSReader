@@ -25,7 +25,16 @@ namespace PresentationLayer
 
         private void lvBokLista_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Podcast podcast = controller.FetchPodcast(urlBox.Text, categoryDropdown.Text, updateFrequencyDropdown.Text);
 
+            LBAvsnitt.Items.Clear();
+            foreach (var item in podcast.Episodes)
+            {
+
+                LBAvsnitt.Items.Add(item.GetName());
+                LBAvsnitt.Items.Add(" ");
+
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)
