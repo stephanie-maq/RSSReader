@@ -9,15 +9,15 @@ namespace DataAccessLayer
 {
     internal class SerializerForXml
     {
-        public void Serialize(List<Podcast> podcastList)
+        public void Serialize(List<Channel> ChannelList)
         {
             try
             {
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Podcast>));
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Channel>));
                 using (FileStream outFile = new FileStream("Podcasts.xml", FileMode.Create,
                     FileAccess.Write))
                 {
-                    xmlSerializer.Serialize(outFile, podcastList);
+                    xmlSerializer.Serialize(outFile, ChannelList);
                 }
             }
             catch (Exception e)
@@ -26,15 +26,15 @@ namespace DataAccessLayer
             }
         }
 
-        public List<Podcast> Deserialize()
+        public List<Channel> Deserialize()
         {
             try
             {
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Podcast>));
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Channel>));
                 using (FileStream inFile = new FileStream("Podcasts.xml", FileMode.Open,
                     FileAccess.Read))
                 {
-                    return (List<Podcast>)xmlSerializer.Deserialize(inFile);
+                    return (List<Channel>)xmlSerializer.Deserialize(inFile);
                 }
             }
             catch (Exception e)
