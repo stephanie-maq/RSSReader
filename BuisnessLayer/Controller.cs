@@ -43,16 +43,16 @@ namespace BuisnessLayer
 
         public void DeleteChannel(string name)
         {
-            int index = ChannelRepository.GetIndex(name);
+            int index = channelRepository.GetIndex(name);
             channelRepository.Delete(index);
         }
 
-        public void CreateChannel(string name, string pn, string address, string objectType)
+        public void CreateChannel(string name, List<Episode> episodes)
         {
-            Channel newChannel = null;
-           
-                newChannel = new Podcast(name, pn, address);
-           
+            Channel newPodcast = null;
+
+            newPodcast = new Podcast(name, episodes);
+
             channelRepository.Create(newPodcast);
         }
 

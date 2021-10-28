@@ -14,5 +14,10 @@ namespace Models
             this.name = name;
             this.descritpion = descritpion;
         }
+
+        public string GetName()
+        {
+            return name;
+        }
     }
 }
