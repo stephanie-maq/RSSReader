@@ -38,5 +38,34 @@ namespace BuisnessLayer
 
             return podcast;
         }
+
+
+        public void DeleteChannel(string name)
+        {
+            int index = ChannelRepository.GetIndex(name);
+            ChannelRepository.Delete(index);
+        }
+
+        public void CreateChannel(string name, string pn, string address, string objectType)
+        {
+            Channel newChannel = null;
+           
+                newChannel = new Podcast(name, pn, address);
+           
+            ChannelRepository.Create(newPodcast);
+        }
+
+        public List<Channel> GetAllPersons()
+        {
+            return ChannelRepository.GetAll();
+        }
+
+
+        public void DeletePerson(string name)
+        {
+            int index = ChannelRepository.GetIndex(name);
+            ChannelRepository.Delete(index);
+        }
+
     }
 }
