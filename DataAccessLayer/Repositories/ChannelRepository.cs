@@ -6,7 +6,7 @@ using System.Xml;
 using System.Linq;
 
 
-namespace DataAccessLayer
+namespace DataAccessLayer.Repositories
 {
     public class ChannelRepository : IRepository<Channel>
     {

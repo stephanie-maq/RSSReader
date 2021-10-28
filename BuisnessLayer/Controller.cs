@@ -1,21 +1,22 @@
 ﻿using System;
-using DataAccessLayer;
+using DataAccessLayer.Repositories;
 using Models;
+using System.Collections.Generic;
 
 namespace BuisnessLayer
 {
     public class Controller
     {
-        private IRepository<Channel> repo;
+        private IChannelRepository<Channel> channelRepository;
 
         public Controller()
         {
-            repo = new ChannelRepository();
+            channelRepository = new ChannelRepository();
         }
 
         public Podcast FetchPodcast(string url, string category, string updateFrequency)
         {
-            Podcast podcast = (Podcast)repo.FetchFromUrl(url);
+            Podcast podcast = (Podcast)channelRepository.FetchFromUrl(url);
 
             int freq = 0;
 
