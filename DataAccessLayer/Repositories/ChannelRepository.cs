@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace DataAccessLayer.Repositories
 {
-    public class ChannelRepository : IRepository<Channel>
+    public class ChannelRepository : IChannelRepository<Channel>
     {
         SerializerForXml dataManager;
         List<Channel> listOfChannels;
@@ -66,10 +66,10 @@ namespace DataAccessLayer.Repositories
 
         public Channel GetByName(string name)
         {
-            return GetAll().FirstOrDefault(p => p.Name.Equals(name));
+            return GetAll().FirstOrDefault(p => p.name.Equals(name));
         }
 
-        public Channel GetByUrl(string address)
+        public Channel GetByUrl(string url)
         {
             return GetAll().FirstOrDefault(p => p.url.Equals(url));
         }

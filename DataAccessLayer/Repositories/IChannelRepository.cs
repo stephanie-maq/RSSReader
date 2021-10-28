@@ -9,7 +9,7 @@ namespace DataAccessLayer.Repositories
     {
         T GetByName(string name);
 
-        T GetByAddress(string address);
+        T GetByUrl(string url);
         int GetIndex(string name);
 
     }

@@ -7,7 +7,7 @@ namespace BuisnessLayer
 {
     public class Controller
     {
-        private IChannelRepository<Channel> channelRepository;
+        IChannelRepository<Channel> channelRepository;
 
         public Controller()
         {
@@ -44,7 +44,7 @@ namespace BuisnessLayer
         public void DeleteChannel(string name)
         {
             int index = ChannelRepository.GetIndex(name);
-            ChannelRepository.Delete(index);
+            channelRepository.Delete(index);
         }
 
         public void CreateChannel(string name, string pn, string address, string objectType)
@@ -53,19 +53,19 @@ namespace BuisnessLayer
            
                 newChannel = new Podcast(name, pn, address);
            
-            ChannelRepository.Create(newPodcast);
+            channelRepository.Create(newPodcast);
         }
 
         public List<Channel> GetAllPersons()
         {
-            return ChannelRepository.GetAll();
+            return channelRepository.GetAll();
         }
 
 
         public void DeletePerson(string name)
         {
-            int index = ChannelRepository.GetIndex(name);
-            ChannelRepository.Delete(index);
+            int index = channelRepository.GetIndex(name);
+            channelRepository.Delete(index);
         }
 
     }
