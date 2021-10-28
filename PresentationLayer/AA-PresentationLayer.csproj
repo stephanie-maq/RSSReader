@@ -86,9 +86,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BuisnessLayer\BuisnessLayer.csproj">
+    <ProjectReference Include="..\BuisnessLayer\CC-BuisnessLayer.csproj">
       <Project>{1829cd7a-a8e2-40b4-b507-70a65f39f36f}</Project>
-      <Name>BuisnessLayer</Name>
+      <Name>CC-BuisnessLayer</Name>
     </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{b7597ca5-87b8-4929-a4f3-062244cd4b03}</Project>
