@@ -1,11 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace DataAccessLayer
 {
     public interface IRepository<T> where T : class
     {
-        T FetchFromUrl(string url);
+        void Create(T entity);
+        void Save();
+        void Delete(int index);
+        int GetIndex(string title);
+        List<T> GetAll();
     }
 }
+
