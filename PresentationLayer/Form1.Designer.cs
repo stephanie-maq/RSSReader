@@ -57,7 +57,7 @@ namespace PresentationLayer
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.titleBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // podcastsView
@@ -333,12 +333,13 @@ namespace PresentationLayer
             this.label10.TabIndex = 26;
             this.label10.Text = "Titel:";
             // 
-            // textBox4
+            // titleBox
             // 
-            this.textBox4.Location = new System.Drawing.Point(103, 186);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(89, 20);
-            this.textBox4.TabIndex = 25;
+            this.titleBox.Location = new System.Drawing.Point(103, 186);
+            this.titleBox.Name = "titleBox";
+            this.titleBox.Size = new System.Drawing.Size(89, 20);
+            this.titleBox.TabIndex = 25;
+            this.titleBox.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // Form1
             // 
@@ -347,7 +348,7 @@ namespace PresentationLayer
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(938, 539);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.titleBox);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.button4);
@@ -409,7 +410,7 @@ namespace PresentationLayer
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox titleBox;
     }
 }
 

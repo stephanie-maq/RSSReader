@@ -48,12 +48,22 @@ namespace PresentationLayer
 
         }
 
-        private void newPodcast_Click(object sender, EventArgs e)
+        private async void newPodcast_Click(object sender, EventArgs e)
         {
-            Podcast podcast = controller.FetchPodcast(urlBox.Text, categoryDropdown.Text, updateFrequencyDropdown.Text);
+            Podcast podcast = await controller.FetchPodcastAsync(urlBox.Text, categoryDropdown.Text, updateFrequencyDropdown.Text);
 
-            ListViewItem podcastView = new ListViewItem("#" + podcast.NumberOfEpisodes);
-            ListViewSubItem nameView = new ListViewSubItem(podcastView, podcast.Name());
+            ListViewItem podcastView = new ListViewItem("#" + podcast.Episodes.Count);
+
+            ListViewSubItem nameView;
+            if (titleBox.Text.Equals(""))
+            {
+                nameView = new ListViewSubItem(podcastView, podcast.Title);
+            }
+            else
+            {
+                nameView = new ListViewSubItem(podcastView, titleBox.Text);
+            }
+
             ListViewSubItem frequencyView = new ListViewSubItem(podcastView, podcast.UpdateFrequency.ToString());
             ListViewSubItem categoryView = new ListViewSubItem(podcastView, podcast.Category);
 
@@ -112,6 +122,11 @@ namespace PresentationLayer
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
         {
 
         }

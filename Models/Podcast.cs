@@ -5,17 +5,12 @@ namespace Models
 {
     public class Podcast : Channel
     {
-        public TimeSpan UpdateFrequency;
-        public string Category;
-        public bool IsSaved;
-        public int NumberOfEpisodes { get; }
-        public List<Episode> Episodes;
+        public List<Episode> Episodes { get; set; }
 
-        public Podcast(string name, List<Episode> episodes)
+        public Podcast(string title, List<Episode> episodes)
         {
-            this.name = name;
+            Title = title;
             Episodes = episodes;
-            NumberOfEpisodes = episodes.Count;
         }
     }
 }

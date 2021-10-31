@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using DataAccessLayer;
 using Models;
 
@@ -6,16 +7,16 @@ namespace BuisnessLayer
 {
     public class Controller
     {
-        private IRepository<Channel> repo;
+        private IRepository<Podcast> repo;
 
         public Controller()
         {
-            repo = new ChannelRepository();
+            repo = new PodcastRepository();
         }
 
-        public Podcast FetchPodcast(string url, string category, string updateFrequency)
+        public async Task<Podcast> FetchPodcastAsync(string url, string category, string updateFrequency)
         {
-            Podcast podcast = (Podcast)repo.FetchFromUrl(url);
+            Podcast podcast = await repo.FetchRemoteData(url);
 
             int freq = 0;
 
@@ -32,9 +33,10 @@ namespace BuisnessLayer
                     break;
             }
 
-            // TODO:
-            //podcast.UpdateFrequency = from param
+            podcast.UpdateFrequency = freq;
             podcast.Category = category;
+
+            repo.Create(podcast);
 
             return podcast;
         }

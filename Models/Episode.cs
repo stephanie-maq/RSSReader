@@ -6,13 +6,10 @@ namespace Models
 {
     public class Episode : Item
     {
-        private string name;
-        private string descritpion;
-
-        public Episode(string name, string descritpion)
+        public Episode(string title, string description)
         {
-            this.name = name;
-            this.descritpion = descritpion;
+            base.Title = title;
+            base.Description = description;
         }
     }
 }
