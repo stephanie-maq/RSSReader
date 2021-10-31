@@ -16,7 +16,7 @@ namespace DataAccessLayer.Repositories
         {
             dataManager = new SerializerForXml<Channel>();
             listOfChannels = new List<Channel>();
-            // listOfChannels = GetAll();
+            listOfChannels = GetAll();
         }
 
         public void Create(Channel entity)
@@ -36,7 +36,7 @@ namespace DataAccessLayer.Repositories
             List<Channel> listOfChannelsDeserialized = new List<Channel>();
             try
             {
-                listOfChannelsDeserialized = dataManager.Deserialize();
+                listOfChannelsDeserialized = dataManager.DeserializeChannel();
             }
             catch (Exception e1)
             {

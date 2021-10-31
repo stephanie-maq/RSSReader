@@ -48,23 +48,23 @@ namespace DataAccessLayer
 
         }
 
-        public void SerializePodcast(List<Channel> podcasts)
-        {
+        //public void SerializePodcast(List<Channel> podcasts)
+        //{
 
-            try
-            {
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Channel>));
-                using (FileStream Outfile = new FileStream("Podcastss.xml", FileMode.Create, FileAccess.Write))
-                {
-                    xmlSerializer.Serialize(Outfile, podcasts);
-                }
-            }
-            catch (Exception e)
-            {
-                throw new SerializerException("Podcastss.xml", "Could not serialize to the file");
-            }
+        //    try
+        //    {
+        //        XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Channel>));
+        //        using (FileStream Outfile = new FileStream("Podcastss.xml", FileMode.Create, FileAccess.Write))
+        //        {
+        //            xmlSerializer.Serialize(Outfile, podcasts);
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        throw new SerializerException("Podcasts.xml", "Could not serialize to the file");
+        //    }
 
-        }
+        //}
 
         public List<T> Deserialize()
         {
@@ -82,6 +82,23 @@ namespace DataAccessLayer
 
                 throw new Exception(e.Message);
 
+            }
+        }
+        public List<Channel> DeserializeChannel()
+        {
+            try
+            {
+                List<Channel> channelsToBeReturned;
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Channel>));
+                using (FileStream inFile = new FileStream("Podcasts.xml", FileMode.Open, FileAccess.Read))
+                {
+                    channelsToBeReturned = (List<Channel>)xmlSerializer.Deserialize(inFile);
+                }
+                return channelsToBeReturned;
+            }
+            catch (Exception)
+            {
+                throw new SerializerException("Podcasts.xml", "Kunde inte deserialisera..");
             }
         }
     }

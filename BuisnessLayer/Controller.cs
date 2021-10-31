@@ -8,7 +8,7 @@ namespace BuisnessLayer
     public class Controller
     {
         IChannelRepository<Channel> channelRepository;
-        EpisodeRepository episodeRepository;
+        IEpisodeRepository<Episode> episodeRepository;
 
 
         public Controller()
@@ -44,7 +44,13 @@ namespace BuisnessLayer
         //    return podcast;
         //}
 
+        //Episodes delen
+        public List<Episode> GetEpisodes(string podcast)
+        {
+            return episodeRepository.GetEpisodesByTitle(podcast);
+        }
 
+        //Podcast delen
         public void DeleteChannel(string name)
         {
             int index = channelRepository.GetIndex(name);
@@ -69,11 +75,11 @@ namespace BuisnessLayer
             return channelRepository.GetAll();
         }
 
-
-        public void DeletePerson(string name)
+        public string GetUrlByTitle(string title)
         {
-            int index = channelRepository.GetIndex(name);
-            channelRepository.Delete(index);
+            Channel channel = channelRepository.GetByName(title);
+            string url = channel.RSSUrl;
+            return url;
         }
 
         public List<Channel> GetPodcasts()
