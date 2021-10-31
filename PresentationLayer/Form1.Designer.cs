@@ -75,7 +75,7 @@ namespace PresentationLayer
             this.podcastsView.TabIndex = 1;
             this.podcastsView.UseCompatibleStateImageBehavior = false;
             this.podcastsView.View = System.Windows.Forms.View.Details;
-            this.podcastsView.SelectedIndexChanged += new System.EventHandler(this.lvBokLista_SelectedIndexChanged);
+            this.podcastsView.SelectedIndexChanged += new System.EventHandler(this.episodesView_SelectedIndexChanged);
             // 
             // columnHeader1
             // 

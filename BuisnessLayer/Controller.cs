@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using DataAccessLayer;
 using Models;
@@ -39,6 +40,13 @@ namespace BuisnessLayer
             repo.Create(podcast);
 
             return podcast;
+        }
+
+        public Tuple<bool, Podcast> GetPodcastByTitle(string title)
+        {
+            bool exits = repo.GetAll().Exists(podcast => podcast.Title.Equals(title));
+            Podcast pod = repo.GetAll().Find(podcast => podcast.Title.Equals(title));
+            return Tuple.Create(exits, pod);
         }
     }
 }

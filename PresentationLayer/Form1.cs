@@ -23,8 +23,24 @@ namespace PresentationLayer
             InitializeComponent();
         }
 
-        private void lvBokLista_SelectedIndexChanged(object sender, EventArgs e)
+        private void episodesView_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (podcastsView.SelectedItems.Count == 1)
+            {
+                string title = podcastsView.SelectedItems[0].SubItems[1].Text;
+                (bool exists, Podcast podcast) = controller.GetPodcastByTitle(title);
+                podcast.Episodes.Reverse();
+
+                if (exists)
+                {
+                    for (int i = 0; i < podcast.Episodes.Count; i++)
+                    {
+                        int episodeNumber = i + 1;
+                        string episodeName = podcast.Episodes[i].Title;
+                        episodesView.Items.Add($"#{episodeNumber} - {episodeName}");
+                    }
+                }
+            }
 
         }
 
