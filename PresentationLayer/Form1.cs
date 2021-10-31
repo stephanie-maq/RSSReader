@@ -160,17 +160,34 @@ namespace PresentationLayer
 
         private void listBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            string someText = LBAvsnitt.SelectedItem.ToString();
+            //string someText = LBAvsnitt.SelectedItem.ToString();
 
-            List<Channel> allPodcasts = controller.GetAllPodcasts();
-            foreach (var item in allPodcasts)
+            //List<Channel> allPodcasts = controller.GetAllPodcasts();
+            //foreach (var item in allPodcasts)
+            //{
+            //    List<Episode> allEpisodes = item.Episodes;
+            //    foreach (var episode in allEpisodes)
+            //    {
+            //        if (episode.Name == someText)
+            //        {
+            //            txtBoxEpisodeDesc.Text = episode.Description;
+            //        }
+            //    }
+            //}
+            if (LBAvsnitt.SelectedItems.Count == 1)
             {
-                List<Episode> allEpisodes = item.Episodes;
-                foreach (var episode in allEpisodes)
+                string podcast = labelTitel.Text;
+                string episode = LBAvsnitt.SelectedItem.ToString();
+                string episodeTitle = episode.Substring(2);
+
+                foreach (var item in controller.GetAllPodcasts())
                 {
-                    if (episode.Name == someText)
+                    foreach (var aEpisode in item.Episodes)
                     {
-                        txtBoxEpisodeDesc.Text = episode.Description;
+                        if (aEpisode.Name.Equals(episodeTitle) && item.Name.Equals(podcast))
+                        {
+                            txtBoxEpisodeDesc.Text = "Titel:\n" + episodeTitle + "\n\nBeskrivning:\n" + aEpisode.Description;
+                        }
                     }
                 }
             }
