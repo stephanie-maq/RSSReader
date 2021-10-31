@@ -10,13 +10,13 @@ namespace DataAccessLayer.Repositories
 {
     public class ChannelRepository : IChannelRepository<Channel>
     {
-        SerializerForXml dataManager;
+        SerializerForXml<Channel> dataManager;
         List<Channel> listOfChannels;
         public ChannelRepository()
         {
-            dataManager = new SerializerForXml();
+            dataManager = new SerializerForXml<Channel>();
             listOfChannels = new List<Channel>();
-            listOfChannels = GetAll();
+            // listOfChannels = GetAll();
         }
 
         public void Create(Channel entity)
@@ -38,9 +38,9 @@ namespace DataAccessLayer.Repositories
             {
                 listOfChannelsDeserialized = dataManager.Deserialize();
             }
-            catch (Exception)
+            catch (Exception e1)
             {
-
+                throw new Exception(e1.Message);
 
             }
 
@@ -66,34 +66,34 @@ namespace DataAccessLayer.Repositories
 
         public Channel GetByName(string name)
         {
-            return GetAll().FirstOrDefault(p => p.name.Equals(name));
+            return GetAll().FirstOrDefault(p => p.Name.Equals(name));
         }
 
         public Channel GetByUrl(string url)
         {
-            return GetAll().FirstOrDefault(p => p.url.Equals(url));
+            return GetAll().FirstOrDefault(p => p.RSSUrl.Equals(url));
         }
 
         public int GetIndex(string name)
         {
-            return GetAll().FindIndex(e => e.name.Equals(name));
+            return GetAll().FindIndex(e => e.Name.Equals(name));
         }
 
-        public Channel FetchFromUrl(string url)
-        {
-            XmlReader reader = XmlReader.Create(url);
-            SyndicationFeed feed = SyndicationFeed.Load(reader);
+        //public Channel FetchFromUrl(string url)
+        //{
+        //    XmlReader reader = XmlReader.Create(url);
+        //    SyndicationFeed feed = SyndicationFeed.Load(reader);
 
-            List<Episode> episodes = new List<Episode>();
+        //    List<Episode> episodes = new List<Episode>();
 
-            feed
-                .Items
-                .ToList()
-                .ForEach(item => episodes.Add(new Episode(item.Title.Text, item.Summary.Text)));
+        //    feed
+        //        .Items
+        //        .ToList()
+        //        .ForEach(item => episodes.Add(new Episode(item.Title.Text, item.Summary.Text)));
 
-            Podcast podcast = new Podcast(feed.Title.Text, episodes);
+        //    Podcast podcast = new Podcast(url, feed.Title.Text, episodes);
 
-            return podcast;
-        }
+        //    return podcast;
+        //}
     }
 }

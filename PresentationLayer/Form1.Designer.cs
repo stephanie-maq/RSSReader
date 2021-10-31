@@ -47,7 +47,7 @@ namespace PresentationLayer
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtBoxEpisodeDesc = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.categoriesView = new System.Windows.Forms.ListBox();
             this.categoryTextBox = new System.Windows.Forms.TextBox();
@@ -57,7 +57,7 @@ namespace PresentationLayer
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtTitel = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // podcastsView
@@ -231,17 +231,17 @@ namespace PresentationLayer
             this.label6.TabIndex = 15;
             this.label6.Text = "Avsnitt #";
             // 
-            // textBox2
+            // txtBoxEpisodeDesc
             // 
-            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtBoxEpisodeDesc.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.Location = new System.Drawing.Point(492, 288);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(396, 187);
-            this.textBox2.TabIndex = 16;
-            this.textBox2.Text = "Beskrivning av avsnittet...";
+            this.txtBoxEpisodeDesc.Location = new System.Drawing.Point(492, 288);
+            this.txtBoxEpisodeDesc.Multiline = true;
+            this.txtBoxEpisodeDesc.Name = "txtBoxEpisodeDesc";
+            this.txtBoxEpisodeDesc.Size = new System.Drawing.Size(396, 187);
+            this.txtBoxEpisodeDesc.TabIndex = 16;
+            this.txtBoxEpisodeDesc.Text = "Beskrivning av avsnittet...";
             // 
             // label7
             // 
@@ -334,12 +334,12 @@ namespace PresentationLayer
             this.label10.TabIndex = 26;
             this.label10.Text = "Titel:";
             // 
-            // textBox4
+            // txtTitel
             // 
-            this.textBox4.Location = new System.Drawing.Point(103, 186);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(89, 20);
-            this.textBox4.TabIndex = 25;
+            this.txtTitel.Location = new System.Drawing.Point(103, 186);
+            this.txtTitel.Name = "txtTitel";
+            this.txtTitel.Size = new System.Drawing.Size(89, 20);
+            this.txtTitel.TabIndex = 25;
             // 
             // Form1
             // 
@@ -348,7 +348,7 @@ namespace PresentationLayer
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(938, 539);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.txtTitel);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.button4);
@@ -357,7 +357,7 @@ namespace PresentationLayer
             this.Controls.Add(this.categoryTextBox);
             this.Controls.Add(this.categoriesView);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtBoxEpisodeDesc);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -400,7 +400,7 @@ namespace PresentationLayer
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtBoxEpisodeDesc;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ListBox categoriesView;
         private System.Windows.Forms.TextBox categoryTextBox;
@@ -410,7 +410,7 @@ namespace PresentationLayer
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtTitel;
     }
 }
 

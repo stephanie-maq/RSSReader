@@ -4,20 +4,27 @@ using System.Text;
 
 namespace Models
 {
-    public class Episode : Item
+    public class Episode
     {
-        private string name;
-        private string descritpion;
+        //private string name;
+        //private string descritpion;
+        public string Name { get; set; }
+        public string Description { get; set; }
 
         public Episode(string name, string descritpion)
         {
-            this.name = name;
-            this.descritpion = descritpion;
+            Name = name;
+            Description = descritpion;
         }
 
-        public string GetName()
+        public Episode()
         {
-            return name;
+
         }
+
+        //public string GetName()
+        //{
+        //    return name;
+        //}
     }
 }
