@@ -25,6 +25,7 @@ namespace PresentationLayer
             categoryController = new CategoryController();
             episodeController = new EpisodeController();
             InitializeComponent();
+            DisplayPodcasts(controller.GetAllPodcasts());
         }
 
         private void lvBokLista_SelectedIndexChanged(object sender, EventArgs e)
@@ -42,12 +43,53 @@ namespace PresentationLayer
 
 
 
-            string name = podcastsView.SelectedItems[0].SubItems[1].Text;
-            Channel podcast = controller.GetPodcastByName(name);
+            //string name = podcastsView.SelectedItems[0].SubItems[1].Text;
+            //Channel podcast = controller.GetPodcastByName(name);
 
-            foreach (var item in podcast.Episodes)
+            //foreach (var item in podcast.Episodes)
+            //{
+            //    LBAvsnitt.Items.Add(item.Name.ToString());
+            //}
+
+            ClearEpisodeInfo();
+            //Om en podcast är vald hämtas information om podcasten och fylls i respektive textfält/combobox.
+            if (podcastsView.SelectedItems.Count == 1)
             {
-                LBAvsnitt.Items.Add(item.Name.ToString());
+                string title = podcastsView.SelectedItems[0].SubItems[1].Text;
+                string updateInterval = podcastsView.Items[podcastsView.SelectedIndices[0]].SubItems[2].Text;
+                string category = podcastsView.Items[podcastsView.SelectedIndices[0]].SubItems[3].Text;
+                string url = controller.GetUrlByTitle(title);
+                urlBox.Text = url;
+                labelTitel.Text = title; 
+                txtTitel.Text = title;
+                updateFrequencyDropdown.SelectedItem = updateInterval;
+                categoryDropdown.SelectedItem = category;
+                btnTaBortPodd.Enabled = true;
+                btnSparaPodd.Enabled = true;
+                newPodcast.Enabled = false;
+
+                foreach (var item in controller.GetAllPodcasts())
+                {
+                    if (item.Name.Equals(title))
+                    {
+                        int numberEpisode = 1;
+                        foreach (var item2 in item.Episodes) //Hämtar antal avsnitt för vald podcast
+                        {
+                            LBAvsnitt.Items.Add("* " + item2.Name);
+                            numberEpisode++;
+                        }
+                    }
+                }
+                controller.GetEpisodes(title); //Hämtar avsnitten för vald podcast
+                txtBoxEpisodeDesc.Clear();
+            }
+            else
+            {
+                ClearEpisodeInfo();
+                ClearTxtNameAndUrl();
+                newPodcast.Enabled = true;
+                btnTaBortPodd.Enabled = false;
+                btnSparaPodd.Enabled = false;
             }
         }
 
@@ -118,17 +160,34 @@ namespace PresentationLayer
 
         private void listBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            string someText = LBAvsnitt.SelectedItem.ToString();
+            //string someText = LBAvsnitt.SelectedItem.ToString();
 
-            List<Channel> allPodcasts = controller.GetAllPodcasts();
-            foreach (var item in allPodcasts)
+            //List<Channel> allPodcasts = controller.GetAllPodcasts();
+            //foreach (var item in allPodcasts)
+            //{
+            //    List<Episode> allEpisodes = item.Episodes;
+            //    foreach (var episode in allEpisodes)
+            //    {
+            //        if (episode.Name == someText)
+            //        {
+            //            txtBoxEpisodeDesc.Text = episode.Description;
+            //        }
+            //    }
+            //}
+            if (LBAvsnitt.SelectedItems.Count == 1)
             {
-                List<Episode> allEpisodes = item.Episodes;
-                foreach (var episode in allEpisodes)
+                string podcast = labelTitel.Text;
+                string episode = LBAvsnitt.SelectedItem.ToString();
+                string episodeTitle = episode.Substring(2);
+
+                foreach (var item in controller.GetAllPodcasts())
                 {
-                    if (episode.Name == someText)
+                    foreach (var aEpisode in item.Episodes)
                     {
-                        txtBoxEpisodeDesc.Text = episode.Description;
+                        if (aEpisode.Name.Equals(episodeTitle) && item.Name.Equals(podcast))
+                        {
+                            txtBoxEpisodeDesc.Text = "Titel:\n" + episodeTitle + "\n\nBeskrivning:\n" + aEpisode.Description;
+                        }
                     }
                 }
             }
@@ -246,6 +305,35 @@ namespace PresentationLayer
             //categoryTextBox.Text = testType.GetType().ToString();
             //categoriesView.Items.Add(testType.GetType().ToString());
             //categoriesView.Items.Add(testCat.GetType().ToString());
+        }
+        private void DisplayPodcasts(List<Channel> podcastsToDisplay)
+        {
+            podcastsView.Items.Clear();
+
+            foreach (var item in podcastsToDisplay)
+            {
+                if (item != null)
+                {
+                    string numberOfEpisodes = item.Episodes.Count().ToString();
+                    ListViewItem newList = new ListViewItem(numberOfEpisodes);
+                    newList.SubItems.Add(item.Name);
+                    newList.SubItems.Add(item.Interval.ToString());
+                    newList.SubItems.Add(item.Category);
+                    podcastsView.Items.Add(newList);
+                }
+            }
+            
+        }
+        private void ClearEpisodeInfo()
+        {
+            txtBoxEpisodeDesc.Clear();
+            LBAvsnitt.Items.Clear();
+        }
+        private void ClearTxtNameAndUrl()
+        {
+            urlBox.Clear();
+            txtTitel.Clear();
+            labelTitel.Text = "Podcastnamn";
         }
     }
 }
