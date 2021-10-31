@@ -43,7 +43,7 @@ namespace PresentationLayer
             this.newPodcast = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.LBAvsnitt = new System.Windows.Forms.ListBox();
+            this.episodesView = new System.Windows.Forms.ListBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -188,16 +188,16 @@ namespace PresentationLayer
             this.button3.Text = "Ta bort";
             this.button3.UseVisualStyleBackColor = true;
             // 
-            // LBAvsnitt
+            // episodesView
             // 
-            this.LBAvsnitt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.episodesView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.LBAvsnitt.FormattingEnabled = true;
-            this.LBAvsnitt.Location = new System.Drawing.Point(28, 288);
-            this.LBAvsnitt.Name = "LBAvsnitt";
-            this.LBAvsnitt.Size = new System.Drawing.Size(405, 186);
-            this.LBAvsnitt.TabIndex = 12;
-            this.LBAvsnitt.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged_1);
+            this.episodesView.FormattingEnabled = true;
+            this.episodesView.Location = new System.Drawing.Point(28, 288);
+            this.episodesView.Name = "episodesView";
+            this.episodesView.Size = new System.Drawing.Size(405, 186);
+            this.episodesView.TabIndex = 12;
+            this.episodesView.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged_1);
             // 
             // label4
             // 
@@ -361,7 +361,7 @@ namespace PresentationLayer
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.LBAvsnitt);
+            this.Controls.Add(this.episodesView);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.newPodcast);
@@ -396,7 +396,7 @@ namespace PresentationLayer
         private System.Windows.Forms.Button newPodcast;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.ListBox LBAvsnitt;
+        private System.Windows.Forms.ListBox episodesView;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
