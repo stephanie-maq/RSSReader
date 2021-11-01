@@ -18,11 +18,13 @@ namespace PresentationLayer
         private PodcastController podcastController;
         private CategoryController categoryController;
 
-        public App()
+        public App(string podcastsFile, string categoryFile)
         {
             podcastController = new PodcastController();
             categoryController = new CategoryController();
             InitializeComponent();
+            podcastController.LoadFromFile(podcastsFile);
+            categoryController.LoadFromFile(categoryFile);
             Task.Run(() => podcastController.KeepPodcastsUpToDate());
         }
 

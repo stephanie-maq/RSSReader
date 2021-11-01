@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using DataAccessLayer;
 using Models;
@@ -31,6 +32,19 @@ namespace BuisnessLayer
             else
             {
                 repo.Create(new Category(name));
+            }
+        }
+
+        public void LoadFromFile(string categoryFile)
+        {
+            if (Validation.FileExists(categoryFile))
+            {
+                repo.Load(categoryFile);
+            }
+            else
+            {
+                string json = "[]";
+                File.WriteAllText(categoryFile, json);
             }
         }
 

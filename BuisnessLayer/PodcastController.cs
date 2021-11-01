@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using DataAccessLayer;
@@ -34,6 +35,19 @@ namespace BuisnessLayer
             }
 
             return freq;
+        }
+
+        public void LoadFromFile(string podcastsFile)
+        {
+            if (Validation.FileExists(podcastsFile))
+            {
+                repo.Load(podcastsFile);
+            }
+            else
+            {
+                string json = "[]";
+                File.WriteAllText(podcastsFile, json);
+            }
         }
 
         private void Foo(int intervall)

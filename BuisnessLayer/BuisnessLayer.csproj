@@ -1,8 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>netstandard2.0</TargetFramework>
+		<TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="System.Text.Json" Version="5.0.2" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj" />

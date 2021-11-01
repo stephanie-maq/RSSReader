@@ -7,6 +7,7 @@ namespace DataAccessLayer
     {
         void Create(T entity);
         void Save(string path);
+        void Load(string path);
         void Delete(int index);
         int GetIndex(T entity);
         List<T> GetAll();

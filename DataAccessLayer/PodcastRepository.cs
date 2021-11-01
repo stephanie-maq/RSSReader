@@ -61,5 +61,12 @@ namespace DataAccessLayer
 
             return podcast;
         }
+
+        public void Load(string path)
+        {
+            string json = File.ReadAllText(path);
+            List<Podcast> pods = JsonSerializer.Deserialize<List<Podcast>>(json);
+            podcasts = new List<Podcast>(pods);
+        }
     }
 }

@@ -38,6 +38,13 @@ namespace DataAccessLayer
             return categories.FindIndex(elem => elem.Name.Equals(cat.Name));
         }
 
+        public void Load(string path)
+        {
+            string json = File.ReadAllText(path);
+            List<Category> cats = JsonSerializer.Deserialize<List<Category>>(json);
+            categories = new List<Category>(cats);
+        }
+
         public void Save(string path)
         {
             string json = JsonSerializer.Serialize(categories);
