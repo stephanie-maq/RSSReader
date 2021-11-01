@@ -36,6 +36,28 @@ namespace BuisnessLayer
             return freq;
         }
 
+        private void Foo(int intervall)
+        {
+            //TODO:
+            int ms = intervall * 100;
+            Task.Delay(ms);
+
+        }
+
+        public void KeepPodcastsUpToDate()
+        {
+            while (true)
+            {
+                var podcasts = repo.GetAll();
+                podcasts.ForEach(podcast =>
+                {
+                    int freq = podcast.UpdateFrequency;
+
+
+                });
+            }
+        }
+
         public async Task FetchPodcastAsync(string url, string category, string updateFrequency)
         {
             Podcast podcast = await repo.FetchRemoteData(url);

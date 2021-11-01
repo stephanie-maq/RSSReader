@@ -13,16 +13,17 @@ using static System.Windows.Forms.ListViewItem;
 
 namespace PresentationLayer
 {
-    public partial class Form1 : Form
+    public partial class App : Form
     {
         private PodcastController podcastController;
         private CategoryController categoryController;
 
-        public Form1()
+        public App()
         {
             podcastController = new PodcastController();
             categoryController = new CategoryController();
             InitializeComponent();
+            Task.Run(() => podcastController.KeepPodcastsUpToDate());
         }
 
         private void episodesView_SelectedIndexChanged(object sender, EventArgs e)
