@@ -48,5 +48,12 @@ namespace BuisnessLayer
             Podcast pod = repo.GetAll().Find(podcast => podcast.Title.Equals(title));
             return Tuple.Create(exits, pod);
         }
+
+        public Tuple<bool, Episode> GetEpisodeByTitle(string title)
+        {
+            bool exits = repo.GetAll().Exists(podcast => podcast.Episodes.Exists(episode => episode.Title.Equals(title)));
+            Episode ep = repo.GetAll().Select(podcast => podcast.Episodes.Find(episode => episode.Title.Equals(title))).First();
+            return Tuple.Create(exits, ep);
+        }
     }
 }

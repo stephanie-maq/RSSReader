@@ -41,7 +41,6 @@ namespace PresentationLayer
                     }
                 }
             }
-
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -98,9 +97,18 @@ namespace PresentationLayer
 
         }
 
-        private void listBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+        private void episodeView_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (podcastsView.SelectedItems.Count == 1)
+            {
+                string title = episodesView.SelectedItem.ToString().Split('-')[1].TrimStart();
+                (bool exists, Episode episode) = controller.GetEpisodeByTitle(title);
 
+                if (exists)
+                {
+                    episodeDescriptionView.Text = episode.Description;
+                }
+            }
         }
 
         private void label7_Click(object sender, EventArgs e)

@@ -47,7 +47,7 @@ namespace PresentationLayer
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.episodeDescriptionView = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.categoriesView = new System.Windows.Forms.ListBox();
             this.categoryTextBox = new System.Windows.Forms.TextBox();
@@ -197,7 +197,7 @@ namespace PresentationLayer
             this.episodesView.Name = "episodesView";
             this.episodesView.Size = new System.Drawing.Size(405, 186);
             this.episodesView.TabIndex = 12;
-            this.episodesView.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged_1);
+            this.episodesView.SelectedIndexChanged += new System.EventHandler(this.episodeView_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -230,17 +230,17 @@ namespace PresentationLayer
             this.label6.TabIndex = 15;
             this.label6.Text = "Avsnitt #";
             // 
-            // textBox2
+            // episodeDescriptionView
             // 
-            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.episodeDescriptionView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.Location = new System.Drawing.Point(492, 288);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(396, 187);
-            this.textBox2.TabIndex = 16;
-            this.textBox2.Text = "Beskrivning av avsnittet...";
+            this.episodeDescriptionView.Location = new System.Drawing.Point(492, 288);
+            this.episodeDescriptionView.Multiline = true;
+            this.episodeDescriptionView.Name = "episodeDescriptionView";
+            this.episodeDescriptionView.Size = new System.Drawing.Size(396, 187);
+            this.episodeDescriptionView.TabIndex = 16;
+            this.episodeDescriptionView.Text = "Beskrivning av avsnittet...";
             // 
             // label7
             // 
@@ -357,7 +357,7 @@ namespace PresentationLayer
             this.Controls.Add(this.categoryTextBox);
             this.Controls.Add(this.categoriesView);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.episodeDescriptionView);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -400,7 +400,7 @@ namespace PresentationLayer
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox episodeDescriptionView;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ListBox categoriesView;
         private System.Windows.Forms.TextBox categoryTextBox;
