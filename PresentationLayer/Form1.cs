@@ -20,12 +20,14 @@ namespace PresentationLayer
 
         public App(string podcastsFile, string categoryFile)
         {
-            podcastController = new PodcastController();
-            categoryController = new CategoryController();
+            podcastController = new PodcastController(podcastsFile);
+            categoryController = new CategoryController(categoryFile);
             InitializeComponent();
-            podcastController.LoadFromFile(podcastsFile);
-            categoryController.LoadFromFile(categoryFile);
-            Task.Run(() => podcastController.KeepPodcastsUpToDate());
+            podcastController.LoadFromFile();
+            categoryController.LoadFromFile();
+            UpdatePodcastsView();
+            UpdateCategoriesView();
+            //Task.Run(() => podcastController.KeepPodcastsUpToDate());
         }
 
         private void episodesView_SelectedIndexChanged(object sender, EventArgs e)
@@ -47,26 +49,6 @@ namespace PresentationLayer
                     urlBox.Text = podcast.Url;
                 }
             }
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void UpdatePodcastsViewWith(List<Podcast> podcasts)
@@ -122,10 +104,6 @@ namespace PresentationLayer
             UpdatePodcastsView();
         }
 
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void episodeView_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -136,11 +114,6 @@ namespace PresentationLayer
                 episodeDescriptionView.Text = desc;
                 episodeDescriptionView.Update();
             }
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void UpdateCategoriesView()
@@ -192,20 +165,6 @@ namespace PresentationLayer
             updateFrequencyDropdown.Items.Add("1 minut");
         }
 
-        private void urlBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox4_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void updatePodcast_Click(object sender, EventArgs e)
         {
@@ -218,23 +177,12 @@ namespace PresentationLayer
             UpdatePodcastsView();
         }
 
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void deletePodcast_Click(object sender, EventArgs e)
         {
             podcastController.DeletePodcast(urlBox.Text);
             UpdatePodcastsView();
             ClearLeftBoxes();
         }
-
-        private void episodeDescriptionView_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
 
         private void updateCategory_Click(object sender, EventArgs e)
         {
@@ -268,14 +216,37 @@ namespace PresentationLayer
             }
         }
 
-        private void label11_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void unselectCategory_Click(object sender, EventArgs e)
         {
             categoriesView.ClearSelected();
+        }
+
+        private void savePodcasts_Click(object sender, EventArgs e)
+        {
+            categoryController.SaveAllCategories();
+            podcastController.SaveAllPodcasts();
+        }
+
+        private void saveCategories_Click(object sender, EventArgs e)
+        {
+            categoryController.SaveAllCategories();
+            podcastController.SaveAllPodcasts();
+        }
+
+        private void app_Closing(object sender, EventArgs e)
+        {
+            bool catSaved = categoryController.IsAllSaved();
+            bool podSaved = podcastController.IsAllSaved();
+
+            if (!catSaved || !podSaved)
+            {
+                DialogResult save = MessageBox.Show("Du har inte sparat allt. Vill du göra det?", "Spara", MessageBoxButtons.YesNo);
+                if (save == DialogResult.Yes)
+                {
+                    categoryController.SaveAllCategories();
+                    podcastController.SaveAllPodcasts();
+                }
+            }
         }
     }
 }

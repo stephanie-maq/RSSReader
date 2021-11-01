@@ -10,11 +10,24 @@ namespace BuisnessLayer
 {
     public class PodcastController
     {
+        private string saveFilePath;
         private IRemoteRepository<Podcast> repo;
 
-        public PodcastController()
+        public PodcastController(string path)
         {
             repo = new PodcastRepository();
+
+            if (Validation.FileExists(path))
+            {
+                repo.Load(path);
+            }
+            else
+            {
+                string json = "[]";
+                File.WriteAllText(path, json);
+            }
+
+            saveFilePath = path;
         }
 
         private int FreqStringToInt(string updateFrequency)
@@ -37,18 +50,9 @@ namespace BuisnessLayer
             return freq;
         }
 
-        public void LoadFromFile(string podcastsFile)
+        public void LoadFromFile()
         {
-            var foo = Validation.FileExists(podcastsFile);
-            if (Validation.FileExists(podcastsFile))
-            {
-                repo.Load(podcastsFile);
-            }
-            else
-            {
-                string json = "[]";
-                File.WriteAllText(podcastsFile, json);
-            }
+            repo.Load(saveFilePath);
         }
 
         private void Foo(int intervall)
@@ -59,7 +63,7 @@ namespace BuisnessLayer
 
         }
 
-        public void KeepPodcastsUpToDate()
+        /*public void KeepPodcastsUpToDate()
         {
             while (true)
             {
@@ -71,7 +75,7 @@ namespace BuisnessLayer
 
                 });
             }
-        }
+        }*/
 
         public async Task FetchPodcastAsync(string url, string category, string updateFrequency)
         {
@@ -179,6 +183,25 @@ namespace BuisnessLayer
         public List<Podcast> GetPodcastsbyCategory(string category)
         {
             return repo.GetAll().Where(podcast => podcast.Category.Name.Equals(category)).ToList();
+        }
+
+        public void SaveAllPodcasts()
+        {
+            repo.Save(saveFilePath);
+            repo.GetAll().ForEach(podcast => podcast.IsSaved = true);
+        }
+
+        public bool IsAllSaved()
+        {
+            foreach (var item in repo.GetAll())
+            {
+                if (!item.IsSaved)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

@@ -12,5 +12,6 @@ namespace Models
         }
 
         public String Name { get; set; }
+        public bool IsSaved { get; set; }
     }
 }

@@ -9,11 +9,24 @@ namespace BuisnessLayer
 {
     public class CategoryController
     {
+        private string saveFilePath;
         private IRepository<Category> repo;
 
-        public CategoryController()
+        public CategoryController(string path)
         {
             repo = new CategoryRepository();
+
+            if (Validation.FileExists(path))
+            {
+                repo.Load(path);
+            }
+            else
+            {
+                string json = "[]";
+                File.WriteAllText(path, json);
+            }
+
+            saveFilePath = path;
         }
 
         public List<Category> GetAllCategories()
@@ -35,17 +48,9 @@ namespace BuisnessLayer
             }
         }
 
-        public void LoadFromFile(string categoryFile)
+        public void LoadFromFile()
         {
-            if (Validation.FileExists(categoryFile))
-            {
-                repo.Load(categoryFile);
-            }
-            else
-            {
-                string json = "[]";
-                File.WriteAllText(categoryFile, json);
-            }
+            repo.Load(saveFilePath);
         }
 
         public void UpdateCategoryTitle(string oldCategory, string newCategory)
@@ -74,6 +79,25 @@ namespace BuisnessLayer
             });
 
             toDelete.ForEach(index => repo.Delete(index));
+        }
+
+        public void SaveAllCategories()
+        {
+            repo.Save(saveFilePath);
+            repo.GetAll().ForEach(category => category.IsSaved = true);
+        }
+
+        public bool IsAllSaved()
+        {
+            foreach (var item in repo.GetAll())
+            {
+                if (!item.IsSaved)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

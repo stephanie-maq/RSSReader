@@ -110,7 +110,6 @@ namespace PresentationLayer
             this.urlBox.Name = "urlBox";
             this.urlBox.Size = new System.Drawing.Size(405, 20);
             this.urlBox.TabIndex = 2;
-            this.urlBox.TextChanged += new System.EventHandler(this.urlBox_TextChanged);
             // 
             // label1
             // 
@@ -121,7 +120,6 @@ namespace PresentationLayer
             this.label1.Size = new System.Drawing.Size(36, 13);
             this.label1.TabIndex = 4;
             this.label1.Text = "URL:";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // categoryDropdown
             // 
@@ -142,7 +140,6 @@ namespace PresentationLayer
             this.label2.Size = new System.Drawing.Size(58, 13);
             this.label2.TabIndex = 6;
             this.label2.Text = "Kategori:";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
@@ -153,7 +150,6 @@ namespace PresentationLayer
             this.label3.Size = new System.Drawing.Size(135, 13);
             this.label3.TabIndex = 8;
             this.label3.Text = "Uppdateringsfrekvens:";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // updateFrequencyDropdown
             // 
@@ -164,7 +160,6 @@ namespace PresentationLayer
             this.updateFrequencyDropdown.Name = "updateFrequencyDropdown";
             this.updateFrequencyDropdown.Size = new System.Drawing.Size(132, 21);
             this.updateFrequencyDropdown.TabIndex = 7;
-            this.updateFrequencyDropdown.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // newPodcast
             // 
@@ -184,6 +179,7 @@ namespace PresentationLayer
             this.button2.TabIndex = 10;
             this.button2.Text = "Spara";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.savePodcasts_Click);
             // 
             // button3
             // 
@@ -215,7 +211,6 @@ namespace PresentationLayer
             this.label4.Size = new System.Drawing.Size(83, 13);
             this.label4.TabIndex = 13;
             this.label4.Text = "Podcastnamn";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label5
             // 
@@ -226,7 +221,6 @@ namespace PresentationLayer
             this.label5.Size = new System.Drawing.Size(83, 13);
             this.label5.TabIndex = 14;
             this.label5.Text = "Podcastnamn";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label6
             // 
@@ -249,7 +243,6 @@ namespace PresentationLayer
             this.episodeDescriptionView.Size = new System.Drawing.Size(396, 165);
             this.episodeDescriptionView.TabIndex = 16;
             this.episodeDescriptionView.Text = "Beskrivning av avsnittet...";
-            this.episodeDescriptionView.TextChanged += new System.EventHandler(this.episodeDescriptionView_TextChanged);
             // 
             // label7
             // 
@@ -260,7 +253,6 @@ namespace PresentationLayer
             this.label7.Size = new System.Drawing.Size(69, 13);
             this.label7.TabIndex = 17;
             this.label7.Text = "Kategorier:";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // categoriesView
             // 
@@ -300,6 +292,7 @@ namespace PresentationLayer
             this.button5.TabIndex = 21;
             this.button5.Text = "Spara";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.saveCategories_Click);
             // 
             // newCategory
             // 
@@ -349,7 +342,6 @@ namespace PresentationLayer
             this.titleBox.Name = "titleBox";
             this.titleBox.Size = new System.Drawing.Size(121, 20);
             this.titleBox.TabIndex = 25;
-            this.titleBox.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // button1
             // 
@@ -380,7 +372,6 @@ namespace PresentationLayer
             this.label11.Size = new System.Drawing.Size(104, 13);
             this.label11.TabIndex = 29;
             this.label11.Text = "Skriv in kategori:";
-            this.label11.Click += new System.EventHandler(this.label11_Click);
             // 
             // button7
             // 
@@ -392,7 +383,7 @@ namespace PresentationLayer
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.unselectCategory_Click);
             // 
-            // Form1
+            // App
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -427,9 +418,10 @@ namespace PresentationLayer
             this.Controls.Add(this.label1);
             this.Controls.Add(this.urlBox);
             this.Controls.Add(this.podcastsView);
-            this.Name = "Form1";
+            this.Name = "App";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.app_Closing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
