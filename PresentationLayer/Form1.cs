@@ -66,10 +66,8 @@ namespace PresentationLayer
 
         }
 
-        private void UpdatePodcastsView()
+        private void UpdatePodcastsViewWith(List<Podcast> podcasts)
         {
-            List<Podcast> podcasts = podcastController.GetAllPodcasts();
-
             podcastsView.Items.Clear();
 
             podcasts.ForEach(podcast =>
@@ -102,6 +100,11 @@ namespace PresentationLayer
 
         }
 
+        private void UpdatePodcastsView()
+        {
+            UpdatePodcastsViewWith(podcastController.GetAllPodcasts());
+        }
+
         private void ClearLeftBoxes()
         {
             urlBox.Clear();
@@ -126,12 +129,9 @@ namespace PresentationLayer
             if (podcastsView.SelectedItems.Count == 1)
             {
                 string title = episodesView.SelectedItem.ToString().Split('-')[1].TrimStart();
-                (bool exists, Episode episode) = podcastController.GetEpisodeByTitle(title);
-
-                if (exists)
-                {
-                    episodeDescriptionView.Text = episode.Description;
-                }
+                string desc = podcastController.GetEpisodeDescriptionByTitle(title);
+                episodeDescriptionView.Text = desc;
+                episodeDescriptionView.Update();
             }
         }
 
@@ -170,7 +170,16 @@ namespace PresentationLayer
 
         private void categoriesView_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (categoriesView.SelectedItems.Count == 1)
+            {
+                string category = categoriesView.SelectedItem.ToString();
+                List<Podcast> filteredPodcasts = podcastController.GetPodcastsbyCategory(category);
+                UpdatePodcastsViewWith(filteredPodcasts);
+            }
+            else
+            {
+                UpdatePodcastsView();
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -232,21 +241,38 @@ namespace PresentationLayer
                 podcastController.UpdateCategoryTitle(category, categoryTextBox.Text);
                 categoryController.UpdateCategoryTitle(category, categoryTextBox.Text);
                 UpdateCategoriesView();
+                UpdatePodcastsView();
                 categoryTextBox.Clear();
             }
 
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void deleteCategory_Click(object sender, EventArgs e)
         {
             if (categoriesView.SelectedItems.Count == 1)
             {
                 string category = categoriesView.SelectedItem.ToString();
-                podcastController.RemovePodcastsByCategory(category);
-                categoryController.RemoveCategoryByName(category);
-                UpdatePodcastsView();
-                UpdateCategoriesView();
+
+                DialogResult yesNo = MessageBox.Show("Är du säker att du vill ta bort kategorin: " + category, "Ta bort", MessageBoxButtons.YesNo);
+
+                if (yesNo == DialogResult.Yes)
+                {
+                    podcastController.RemovePodcastsByCategory(category);
+                    categoryController.RemoveCategoryByName(category);
+                    UpdatePodcastsView();
+                    UpdateCategoriesView();
+                }
             }
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void unselectCategory_Click(object sender, EventArgs e)
+        {
+            categoriesView.ClearSelected();
         }
     }
 }

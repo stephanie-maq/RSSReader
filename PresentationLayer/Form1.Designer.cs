@@ -61,6 +61,7 @@ namespace PresentationLayer
             this.button1 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
+            this.button7 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // podcastsView
@@ -196,7 +197,7 @@ namespace PresentationLayer
             // 
             // episodesView
             // 
-            this.episodesView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.episodesView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.episodesView.FormattingEnabled = true;
             this.episodesView.Location = new System.Drawing.Point(28, 345);
@@ -239,8 +240,8 @@ namespace PresentationLayer
             // 
             // episodeDescriptionView
             // 
-            this.episodeDescriptionView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.episodeDescriptionView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.episodeDescriptionView.Location = new System.Drawing.Point(492, 327);
             this.episodeDescriptionView.Multiline = true;
@@ -263,7 +264,7 @@ namespace PresentationLayer
             // 
             // categoriesView
             // 
-            this.categoriesView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.categoriesView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.categoriesView.FormattingEnabled = true;
             this.categoriesView.Location = new System.Drawing.Point(507, 32);
@@ -274,26 +275,26 @@ namespace PresentationLayer
             // 
             // categoryTextBox
             // 
-            this.categoryTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.categoryTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.categoryTextBox.Location = new System.Drawing.Point(505, 163);
+            this.categoryTextBox.Location = new System.Drawing.Point(505, 186);
             this.categoryTextBox.Name = "categoryTextBox";
             this.categoryTextBox.Size = new System.Drawing.Size(381, 20);
             this.categoryTextBox.TabIndex = 19;
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(813, 195);
+            this.button4.Location = new System.Drawing.Point(813, 218);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 22;
             this.button4.Text = "Ta bort";
             this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.button4.Click += new System.EventHandler(this.deleteCategory_Click);
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(715, 195);
+            this.button5.Location = new System.Drawing.Point(715, 218);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 23);
             this.button5.TabIndex = 21;
@@ -302,7 +303,7 @@ namespace PresentationLayer
             // 
             // newCategory
             // 
-            this.newCategory.Location = new System.Drawing.Point(507, 195);
+            this.newCategory.Location = new System.Drawing.Point(507, 218);
             this.newCategory.Name = "newCategory";
             this.newCategory.Size = new System.Drawing.Size(75, 23);
             this.newCategory.TabIndex = 20;
@@ -312,7 +313,7 @@ namespace PresentationLayer
             // 
             // label8
             // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.label8.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.label8.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -323,7 +324,7 @@ namespace PresentationLayer
             // 
             // label9
             // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.label9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -362,7 +363,7 @@ namespace PresentationLayer
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(605, 195);
+            this.button6.Location = new System.Drawing.Point(605, 218);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(75, 23);
             this.button6.TabIndex = 28;
@@ -374,11 +375,22 @@ namespace PresentationLayer
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(504, 147);
+            this.label11.Location = new System.Drawing.Point(504, 170);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(104, 13);
             this.label11.TabIndex = 29;
             this.label11.Text = "Skriv in kategori:";
+            this.label11.Click += new System.EventHandler(this.label11_Click);
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(787, 133);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(99, 23);
+            this.button7.TabIndex = 30;
+            this.button7.Text = "ta bort markering";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.unselectCategory_Click);
             // 
             // Form1
             // 
@@ -386,6 +398,7 @@ namespace PresentationLayer
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(938, 517);
+            this.Controls.Add(this.button7);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button1);
@@ -456,6 +469,7 @@ namespace PresentationLayer
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button button7;
     }
 }
 

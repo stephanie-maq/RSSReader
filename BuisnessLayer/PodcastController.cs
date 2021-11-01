@@ -60,11 +60,17 @@ namespace BuisnessLayer
             return Tuple.Create(exits, pod);
         }
 
-        public Tuple<bool, Episode> GetEpisodeByTitle(string title)
+        public string GetEpisodeDescriptionByTitle(string title)
         {
             bool exits = repo.GetAll().Exists(podcast => podcast.Episodes.Exists(episode => episode.Title.Equals(title)));
             Episode ep = repo.GetAll().Select(podcast => podcast.Episodes.Find(episode => episode.Title.Equals(title))).First();
-            return Tuple.Create(exits, ep);
+
+            if (exits)
+            {
+                return ep.Description;
+            }
+
+            return "";
         }
 
         public void UpdatePodcastTitle(string url, string newTitle)
@@ -110,7 +116,7 @@ namespace BuisnessLayer
         {
             repo.GetAll().ForEach(podcast =>
             {
-                if (podcast.Category.Equals(oldTitle))
+                if (podcast.Category.Name.Equals(oldTitle))
                 {
                     podcast.Category = new Category(newTitle);
                 }
@@ -131,6 +137,11 @@ namespace BuisnessLayer
             });
 
             toDelete.ForEach(index => repo.Delete(index));
+        }
+
+        public List<Podcast> GetPodcastsbyCategory(string category)
+        {
+            return repo.GetAll().Where(podcast => podcast.Category.Name.Equals(category)).ToList();
         }
     }
 }
