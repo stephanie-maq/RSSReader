@@ -39,6 +39,7 @@ namespace BuisnessLayer
 
         public void LoadFromFile(string podcastsFile)
         {
+            var foo = Validation.FileExists(podcastsFile);
             if (Validation.FileExists(podcastsFile))
             {
                 repo.Load(podcastsFile);
