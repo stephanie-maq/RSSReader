@@ -165,7 +165,7 @@ namespace PresentationLayer
             }
 
             UpdateCategoriesView();
-
+            categoryTextBox.Clear();
         }
 
         private void categoriesView_SelectedIndexChanged(object sender, EventArgs e)
