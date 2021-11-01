@@ -39,6 +39,7 @@ namespace PresentationLayer
                         string episodeName = podcast.Episodes[i].Title;
                         episodesView.Items.Add($"#{episodeNumber} - {episodeName}");
                     }
+                    urlBox.Text = podcast.Url;
                 }
             }
         }
@@ -63,33 +64,46 @@ namespace PresentationLayer
 
         }
 
+        private void UpdatePodcastsView()
+        {
+            List<Podcast> podcasts = controller.GetAllPodcasts();
+
+            podcastsView.Items.Clear();
+
+            podcasts.ForEach(podcast =>
+            {
+                ListViewItem podcastView = new ListViewItem("#" + podcast.Episodes.Count);
+
+                ListViewSubItem nameView;
+                if (titleBox.Text.Equals(""))
+                {
+                    nameView = new ListViewSubItem(podcastView, podcast.Title);
+                }
+                else
+                {
+                    nameView = new ListViewSubItem(podcastView, titleBox.Text);
+                }
+
+                ListViewSubItem frequencyView = new ListViewSubItem(podcastView, podcast.UpdateFrequency.ToString());
+                ListViewSubItem categoryView = new ListViewSubItem(podcastView, podcast.Category);
+
+
+                podcastView.SubItems.Add(nameView);
+                podcastView.SubItems.Add(frequencyView);
+                podcastView.SubItems.Add(categoryView);
+
+                podcastsView.FullRowSelect = true;
+
+                podcastsView.Items.Add(podcastView);
+            });
+
+
+        }
+
         private async void newPodcast_Click(object sender, EventArgs e)
         {
-            Podcast podcast = await controller.FetchPodcastAsync(urlBox.Text, categoryDropdown.Text, updateFrequencyDropdown.Text);
-
-            ListViewItem podcastView = new ListViewItem("#" + podcast.Episodes.Count);
-
-            ListViewSubItem nameView;
-            if (titleBox.Text.Equals(""))
-            {
-                nameView = new ListViewSubItem(podcastView, podcast.Title);
-            }
-            else
-            {
-                nameView = new ListViewSubItem(podcastView, titleBox.Text);
-            }
-
-            ListViewSubItem frequencyView = new ListViewSubItem(podcastView, podcast.UpdateFrequency.ToString());
-            ListViewSubItem categoryView = new ListViewSubItem(podcastView, podcast.Category);
-
-
-            podcastView.SubItems.Add(nameView);
-            podcastView.SubItems.Add(frequencyView);
-            podcastView.SubItems.Add(categoryView);
-
-            podcastsView.FullRowSelect = true;
-
-            podcastsView.Items.Add(podcastView);
+            await controller.FetchPodcastAsync(urlBox.Text, categoryDropdown.Text, updateFrequencyDropdown.Text);
+            UpdatePodcastsView();
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -151,6 +165,18 @@ namespace PresentationLayer
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void updatePodcast_Click(object sender, EventArgs e)
+        {
+
+            controller.UpdatePodcastTitle(urlBox.Text, titleBox.Text);
+            UpdatePodcastsView();
+        }
+
+        private void label5_Click(object sender, EventArgs e)
         {
 
         }

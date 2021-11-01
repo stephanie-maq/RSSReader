@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DataAccessLayer;
@@ -15,7 +16,7 @@ namespace BuisnessLayer
             repo = new PodcastRepository();
         }
 
-        public async Task<Podcast> FetchPodcastAsync(string url, string category, string updateFrequency)
+        public async Task FetchPodcastAsync(string url, string category, string updateFrequency)
         {
             Podcast podcast = await repo.FetchRemoteData(url);
 
@@ -34,12 +35,11 @@ namespace BuisnessLayer
                     break;
             }
 
+            podcast.Url = url;
             podcast.UpdateFrequency = freq;
             podcast.Category = category;
 
             repo.Create(podcast);
-
-            return podcast;
         }
 
         public Tuple<bool, Podcast> GetPodcastByTitle(string title)
@@ -54,6 +54,22 @@ namespace BuisnessLayer
             bool exits = repo.GetAll().Exists(podcast => podcast.Episodes.Exists(episode => episode.Title.Equals(title)));
             Episode ep = repo.GetAll().Select(podcast => podcast.Episodes.Find(episode => episode.Title.Equals(title))).First();
             return Tuple.Create(exits, ep);
+        }
+
+        public void UpdatePodcastTitle(string url, string newTitle)
+        {
+            foreach (var podcast in repo.GetAll())
+            {
+                if (podcast.Url.Equals(url))
+                {
+                    podcast.Title = newTitle;
+                }
+            }
+        }
+
+        public List<Podcast> GetAllPodcasts()
+        {
+            return repo.GetAll();
         }
     }
 }
