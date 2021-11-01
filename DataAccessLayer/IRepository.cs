@@ -8,9 +8,8 @@ namespace DataAccessLayer
         void Create(T entity);
         void Save(string path);
         void Delete(int index);
-        int GetIndex(string title);
+        int GetIndex(T entity);
         List<T> GetAll();
-        Task<T> FetchRemoteData(string url);
     }
 }
 

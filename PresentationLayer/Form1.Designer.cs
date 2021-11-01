@@ -125,6 +125,7 @@ namespace PresentationLayer
             // categoryDropdown
             // 
             this.categoryDropdown.BackColor = System.Drawing.SystemColors.Window;
+            this.categoryDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.categoryDropdown.FormattingEnabled = true;
             this.categoryDropdown.Location = new System.Drawing.Point(317, 233);
             this.categoryDropdown.Name = "categoryDropdown";
@@ -156,6 +157,7 @@ namespace PresentationLayer
             // updateFrequencyDropdown
             // 
             this.updateFrequencyDropdown.BackColor = System.Drawing.SystemColors.Window;
+            this.updateFrequencyDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.updateFrequencyDropdown.FormattingEnabled = true;
             this.updateFrequencyDropdown.Location = new System.Drawing.Point(168, 233);
             this.updateFrequencyDropdown.Name = "updateFrequencyDropdown";
@@ -190,10 +192,11 @@ namespace PresentationLayer
             this.button3.TabIndex = 11;
             this.button3.Text = "Ta bort";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.deletePodcast_Click);
             // 
             // episodesView
             // 
-            this.episodesView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.episodesView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.episodesView.FormattingEnabled = true;
             this.episodesView.Location = new System.Drawing.Point(28, 345);
@@ -236,8 +239,8 @@ namespace PresentationLayer
             // 
             // episodeDescriptionView
             // 
-            this.episodeDescriptionView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.episodeDescriptionView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.episodeDescriptionView.Location = new System.Drawing.Point(492, 327);
             this.episodeDescriptionView.Multiline = true;
@@ -245,6 +248,7 @@ namespace PresentationLayer
             this.episodeDescriptionView.Size = new System.Drawing.Size(396, 165);
             this.episodeDescriptionView.TabIndex = 16;
             this.episodeDescriptionView.Text = "Beskrivning av avsnittet...";
+            this.episodeDescriptionView.TextChanged += new System.EventHandler(this.episodeDescriptionView_TextChanged);
             // 
             // label7
             // 
@@ -259,18 +263,18 @@ namespace PresentationLayer
             // 
             // categoriesView
             // 
-            this.categoriesView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.categoriesView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.categoriesView.FormattingEnabled = true;
             this.categoriesView.Location = new System.Drawing.Point(507, 32);
             this.categoriesView.Name = "categoriesView";
             this.categoriesView.Size = new System.Drawing.Size(381, 95);
             this.categoriesView.TabIndex = 18;
-            this.categoriesView.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged_2);
+            this.categoriesView.SelectedIndexChanged += new System.EventHandler(this.categoriesView_SelectedIndexChanged);
             // 
             // categoryTextBox
             // 
-            this.categoryTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.categoryTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.categoryTextBox.Location = new System.Drawing.Point(505, 163);
             this.categoryTextBox.Name = "categoryTextBox";
@@ -285,6 +289,7 @@ namespace PresentationLayer
             this.button4.TabIndex = 22;
             this.button4.Text = "Ta bort";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
@@ -307,7 +312,7 @@ namespace PresentationLayer
             // 
             // label8
             // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.label8.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.label8.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -318,7 +323,7 @@ namespace PresentationLayer
             // 
             // label9
             // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.label9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -357,12 +362,13 @@ namespace PresentationLayer
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(602, 195);
+            this.button6.Location = new System.Drawing.Point(605, 195);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(75, 23);
             this.button6.TabIndex = 28;
             this.button6.Text = "Updatera";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.updateCategory_Click);
             // 
             // label11
             // 

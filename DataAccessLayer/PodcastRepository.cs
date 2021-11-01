@@ -9,7 +9,7 @@ using Models;
 
 namespace DataAccessLayer
 {
-    public class PodcastRepository : IRepository<Podcast>
+    public class PodcastRepository : IRemoteRepository<Podcast>
     {
         List<Podcast> podcasts;
 
@@ -33,9 +33,9 @@ namespace DataAccessLayer
             return podcasts;
         }
 
-        public int GetIndex(string title)
+        public int GetIndex(Podcast pod2)
         {
-            return podcasts.FindIndex(podcast => podcast.Title.Equals(title));
+            return podcasts.FindIndex(podcast => podcast.Title.Equals(pod2.Title) && podcast.Category.Name.Equals(pod2.Category.Name));
         }
 
         public void Save(string path)
