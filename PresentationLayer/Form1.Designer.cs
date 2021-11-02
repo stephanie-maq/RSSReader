@@ -41,7 +41,6 @@ namespace PresentationLayer
             this.label3 = new System.Windows.Forms.Label();
             this.updateFrequencyDropdown = new System.Windows.Forms.ComboBox();
             this.newPodcast = new System.Windows.Forms.Button();
-            this.btnSparaPodd = new System.Windows.Forms.Button();
             this.btnTaBortPodd = new System.Windows.Forms.Button();
             this.episodesView = new System.Windows.Forms.ListBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -52,7 +51,6 @@ namespace PresentationLayer
             this.categoriesView = new System.Windows.Forms.ListBox();
             this.categoryTextBox = new System.Windows.Forms.TextBox();
             this.btnTaBortCat = new System.Windows.Forms.Button();
-            this.btnSparaCat = new System.Windows.Forms.Button();
             this.newCategory = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -170,7 +168,7 @@ namespace PresentationLayer
             // 
             // newPodcast
             // 
-            this.newPodcast.Location = new System.Drawing.Point(37, 354);
+            this.newPodcast.Location = new System.Drawing.Point(97, 333);
             this.newPodcast.Margin = new System.Windows.Forms.Padding(4);
             this.newPodcast.Name = "newPodcast";
             this.newPodcast.Size = new System.Drawing.Size(100, 28);
@@ -179,20 +177,9 @@ namespace PresentationLayer
             this.newPodcast.UseVisualStyleBackColor = true;
             this.newPodcast.Click += new System.EventHandler(this.newPodcast_Click);
             // 
-            // btnSparaPodd
-            // 
-            this.btnSparaPodd.Location = new System.Drawing.Point(325, 354);
-            this.btnSparaPodd.Margin = new System.Windows.Forms.Padding(4);
-            this.btnSparaPodd.Name = "btnSparaPodd";
-            this.btnSparaPodd.Size = new System.Drawing.Size(100, 28);
-            this.btnSparaPodd.TabIndex = 10;
-            this.btnSparaPodd.Text = "Spara";
-            this.btnSparaPodd.UseVisualStyleBackColor = true;
-            this.btnSparaPodd.Click += new System.EventHandler(this.savePodcasts_Click);
-            // 
             // btnTaBortPodd
             // 
-            this.btnTaBortPodd.Location = new System.Drawing.Point(477, 354);
+            this.btnTaBortPodd.Location = new System.Drawing.Point(423, 333);
             this.btnTaBortPodd.Margin = new System.Windows.Forms.Padding(4);
             this.btnTaBortPodd.Name = "btnTaBortPodd";
             this.btnTaBortPodd.Size = new System.Drawing.Size(100, 28);
@@ -296,7 +283,7 @@ namespace PresentationLayer
             // 
             // btnTaBortCat
             // 
-            this.btnTaBortCat.Location = new System.Drawing.Point(1084, 268);
+            this.btnTaBortCat.Location = new System.Drawing.Point(1026, 268);
             this.btnTaBortCat.Margin = new System.Windows.Forms.Padding(4);
             this.btnTaBortCat.Name = "btnTaBortCat";
             this.btnTaBortCat.Size = new System.Drawing.Size(100, 28);
@@ -305,20 +292,9 @@ namespace PresentationLayer
             this.btnTaBortCat.UseVisualStyleBackColor = true;
             this.btnTaBortCat.Click += new System.EventHandler(this.deleteCategory_Click);
             // 
-            // btnSparaCat
-            // 
-            this.btnSparaCat.Location = new System.Drawing.Point(953, 268);
-            this.btnSparaCat.Margin = new System.Windows.Forms.Padding(4);
-            this.btnSparaCat.Name = "btnSparaCat";
-            this.btnSparaCat.Size = new System.Drawing.Size(100, 28);
-            this.btnSparaCat.TabIndex = 21;
-            this.btnSparaCat.Text = "Spara";
-            this.btnSparaCat.UseVisualStyleBackColor = true;
-            this.btnSparaCat.Click += new System.EventHandler(this.saveCategories_Click);
-            // 
             // newCategory
             // 
-            this.newCategory.Location = new System.Drawing.Point(676, 268);
+            this.newCategory.Location = new System.Drawing.Point(703, 268);
             this.newCategory.Margin = new System.Windows.Forms.Padding(4);
             this.newCategory.Name = "newCategory";
             this.newCategory.Size = new System.Drawing.Size(100, 28);
@@ -372,7 +348,7 @@ namespace PresentationLayer
             // 
             // btnUppdateraPodd
             // 
-            this.btnUppdateraPodd.Location = new System.Drawing.Point(176, 354);
+            this.btnUppdateraPodd.Location = new System.Drawing.Point(256, 333);
             this.btnUppdateraPodd.Margin = new System.Windows.Forms.Padding(4);
             this.btnUppdateraPodd.Name = "btnUppdateraPodd";
             this.btnUppdateraPodd.Size = new System.Drawing.Size(100, 28);
@@ -383,7 +359,7 @@ namespace PresentationLayer
             // 
             // btnUppdateraCat
             // 
-            this.btnUppdateraCat.Location = new System.Drawing.Point(807, 268);
+            this.btnUppdateraCat.Location = new System.Drawing.Point(874, 268);
             this.btnUppdateraCat.Margin = new System.Windows.Forms.Padding(4);
             this.btnUppdateraCat.Name = "btnUppdateraCat";
             this.btnUppdateraCat.Size = new System.Drawing.Size(100, 28);
@@ -429,7 +405,6 @@ namespace PresentationLayer
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.btnTaBortCat);
-            this.Controls.Add(this.btnSparaCat);
             this.Controls.Add(this.newCategory);
             this.Controls.Add(this.categoryTextBox);
             this.Controls.Add(this.categoriesView);
@@ -440,7 +415,6 @@ namespace PresentationLayer
             this.Controls.Add(this.label4);
             this.Controls.Add(this.episodesView);
             this.Controls.Add(this.btnTaBortPodd);
-            this.Controls.Add(this.btnSparaPodd);
             this.Controls.Add(this.newPodcast);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.updateFrequencyDropdown);
@@ -473,7 +447,6 @@ namespace PresentationLayer
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox updateFrequencyDropdown;
         private System.Windows.Forms.Button newPodcast;
-        private System.Windows.Forms.Button btnSparaPodd;
         private System.Windows.Forms.Button btnTaBortPodd;
         private System.Windows.Forms.ListBox episodesView;
         private System.Windows.Forms.Label label4;
@@ -484,7 +457,6 @@ namespace PresentationLayer
         private System.Windows.Forms.ListBox categoriesView;
         private System.Windows.Forms.TextBox categoryTextBox;
         private System.Windows.Forms.Button btnTaBortCat;
-        private System.Windows.Forms.Button btnSparaCat;
         private System.Windows.Forms.Button newCategory;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;

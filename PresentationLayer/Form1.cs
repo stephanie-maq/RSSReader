@@ -38,7 +38,6 @@ namespace PresentationLayer
             if (podcastsView.SelectedItems.Count == 1)
             {
                 btnTaBortPodd.Enabled = true;
-                btnSparaPodd.Enabled = true;
                 btnUppdateraPodd.Enabled = true;
                 newPodcast.Enabled = false;
                 string title = podcastsView.SelectedItems[0].SubItems[1].Text;
@@ -56,7 +55,6 @@ namespace PresentationLayer
             {
 
                 btnTaBortPodd.Enabled = false;
-                btnSparaPodd.Enabled = false;
                 btnUppdateraPodd.Enabled = false;
                 newPodcast.Enabled = true;
                 ClearLeftBoxes();
@@ -129,6 +127,7 @@ namespace PresentationLayer
 
             titleBox.Clear();
             UpdatePodcastsView();
+            saveChanges();
         }
 
 
@@ -169,6 +168,7 @@ namespace PresentationLayer
 
             UpdateCategoriesView();
             categoryTextBox.Clear();
+            saveChanges();
         }
 
         private void categoriesView_SelectedIndexChanged(object sender, EventArgs e)
@@ -176,7 +176,6 @@ namespace PresentationLayer
             if (categoriesView.SelectedItems.Count == 1)
             {
                 btnTaBortCat.Enabled = true;
-                btnSparaCat.Enabled = true;
                 btnUppdateraCat.Enabled = true;
                 newCategory.Enabled = false;
                 string category = categoriesView.SelectedItem.ToString();
@@ -187,7 +186,6 @@ namespace PresentationLayer
             {
                 UpdatePodcastsView();
                 btnTaBortCat.Enabled = false;
-                btnSparaCat.Enabled = false;
                 btnUppdateraCat.Enabled = false;
                 newCategory.Enabled = true;
             }
@@ -226,9 +224,17 @@ namespace PresentationLayer
 
         private void deletePodcast_Click(object sender, EventArgs e)
         {
-            podcastController.DeletePodcast(urlBox.Text);
-            UpdatePodcastsView();
-            ClearLeftBoxes();
+            
+                DialogResult yesNo = MessageBox.Show("Är du säker att du vill ta bort podcasten? ", "Ta bort", MessageBoxButtons.YesNo);
+
+                if (yesNo == DialogResult.Yes)
+                {
+                    podcastController.DeletePodcast(urlBox.Text);
+                    UpdatePodcastsView();
+                    ClearLeftBoxes();
+                    saveChanges();
+
+                }
         }
 
         private void updateCategory_Click(object sender, EventArgs e)
@@ -260,6 +266,8 @@ namespace PresentationLayer
                     UpdatePodcastsView();
                     UpdateCategoriesView();
                     UnselectRightSide();
+                    saveChanges();
+
                 }
             }
         }
@@ -272,17 +280,10 @@ namespace PresentationLayer
         {
             categoriesView.ClearSelected();
             btnTaBortCat.Enabled = false;
-            btnSparaCat.Enabled = false;
             btnUppdateraCat.Enabled = false;
             newCategory.Enabled = true;
         }
-        private void savePodcasts_Click(object sender, EventArgs e)
-        {
-            categoryController.SaveAllCategories();
-            podcastController.SaveAllPodcasts();
-        }
-
-        private void saveCategories_Click(object sender, EventArgs e)
+        private void saveChanges()
         {
             categoryController.SaveAllCategories();
             podcastController.SaveAllPodcasts();
