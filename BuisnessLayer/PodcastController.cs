@@ -108,16 +108,13 @@ namespace BuisnessLayer
         {
             bool exits = repo.GetAll().ToList().Exists(podcast => podcast.Title.Equals(title));
             Podcast pod = repo.GetAll().ToList().Find(podcast => podcast.Title.Equals(title));
-            pod.Episodes.Reverse();
+
             List<string> eps = new List<string>();
+
             if (exits)
             {
-                for (int i = 0; i < pod.Episodes.Count; i++)
-                {
-                    int episodeNumber = i + 1;
-                    string episodeName = pod.Episodes[i].StringToDisplay();
-                    eps.Add(episodeName);
-                }
+                pod.Episodes.Reverse();
+                pod.Episodes.ForEach(ep => eps.Add(ep.StringToDisplay()));
             }
 
             return Tuple.Create(pod.Url, eps);

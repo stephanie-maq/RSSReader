@@ -42,6 +42,7 @@ namespace PresentationLayer
 
                 if (eps.Count > 0)
                 {
+                    episodesView.Items.Clear();
                     eps.ForEach(ep => episodesView.Items.Add(ep));
                     urlBox.Text = url;
                 }
