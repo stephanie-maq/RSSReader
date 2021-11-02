@@ -122,15 +122,20 @@ namespace BuisnessLayer
 
         public string GetEpisodeDescriptionByTitle(string title)
         {
-            bool exists = repo.GetAll().ToList().Exists(podcast => podcast.Episodes.Exists(episode => episode.Title.Equals(title)));
-            Episode ep = repo.GetAll().ToList().Select(podcast => podcast.Episodes.Find(episode => episode.Title.Equals(title))).First();
+            string temp = "";
 
-            if (exists && ep.Description != null)
+            foreach (Podcast podcast in repo.GetAll())
             {
-                return ep.Description;
+                foreach (Episode episode in podcast.Episodes)
+                {
+                    if (episode.Title.Equals(title))
+                    {
+                        temp = episode.Description;
+                    }
+                }
             }
 
-            return "";
+            return temp;
         }
 
         public void UpdatePodcastTitle(string url, string newTitle)
