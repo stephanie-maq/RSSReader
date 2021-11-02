@@ -60,6 +60,7 @@ namespace PresentationLayer
             this.btnUppdateraCat = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // podcastsView
@@ -390,12 +391,25 @@ namespace PresentationLayer
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.unselectCategory_Click);
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(30, 11);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(79, 17);
+            this.label12.TabIndex = 31;
+            this.label12.Text = "Podcasts:";
+            this.label12.Click += new System.EventHandler(this.label12_Click);
+            // 
             // App
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1251, 636);
+            this.Controls.Add(this.label12);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.btnUppdateraCat);
@@ -466,6 +480,7 @@ namespace PresentationLayer
         private System.Windows.Forms.Button btnUppdateraCat;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Label label12;
     }
 }
 

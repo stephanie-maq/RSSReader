@@ -27,6 +27,12 @@ namespace PresentationLayer
             categoryController.LoadFromFile();
             UpdatePodcastsView();
             UpdateCategoriesView();
+            btnTaBortCat.Enabled = false;
+            btnUppdateraCat.Enabled = false;
+            newCategory.Enabled = true;
+            btnTaBortPodd.Enabled = false;
+            btnUppdateraPodd.Enabled = false;
+            newPodcast.Enabled = true;
             // Start 3 threads that check for updates given some intervall.
             Task.Run(() => podcastController.UpdateWithIntervall(10));
             Task.Run(() => podcastController.UpdateWithIntervall(30));
@@ -233,7 +239,7 @@ namespace PresentationLayer
                     UpdatePodcastsView();
                     ClearLeftBoxes();
                     saveChanges();
-
+                    UnselectLeftSide();
                 }
         }
 
@@ -283,6 +289,13 @@ namespace PresentationLayer
             btnUppdateraCat.Enabled = false;
             newCategory.Enabled = true;
         }
+        private void UnselectLeftSide()
+        {
+            categoriesView.ClearSelected();
+            btnTaBortPodd.Enabled = false;
+            btnUppdateraPodd.Enabled = false;
+            newPodcast.Enabled = true;
+        }
         private void saveChanges()
         {
             categoryController.SaveAllCategories();
@@ -303,6 +316,11 @@ namespace PresentationLayer
                     podcastController.SaveAllPodcasts();
                 }
             }
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
