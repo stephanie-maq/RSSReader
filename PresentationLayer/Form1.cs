@@ -37,6 +37,10 @@ namespace PresentationLayer
         {
             if (podcastsView.SelectedItems.Count == 1)
             {
+                btnTaBortPodd.Enabled = true;
+                btnSparaPodd.Enabled = true;
+                btnUppdateraPodd.Enabled = true;
+                newPodcast.Enabled = false;
                 string title = podcastsView.SelectedItems[0].SubItems[1].Text;
                 (string url, List<string> eps) = podcastController.GetPodcastUrlAndEpisodesByTitle(title);
 
@@ -46,6 +50,15 @@ namespace PresentationLayer
                     eps.ForEach(ep => episodesView.Items.Add(ep));
                     urlBox.Text = url;
                 }
+            }
+
+            else {
+
+                btnTaBortPodd.Enabled = false;
+                btnSparaPodd.Enabled = false;
+                btnUppdateraPodd.Enabled = false;
+                newPodcast.Enabled = true;
+                ClearLeftBoxes();
             }
         }
 
@@ -91,6 +104,7 @@ namespace PresentationLayer
             urlBox.Clear();
             titleBox.Clear();
             episodesView.Items.Clear();
+            episodeDescriptionView.Clear();
         }
 
 
@@ -160,6 +174,10 @@ namespace PresentationLayer
         {
             if (categoriesView.SelectedItems.Count == 1)
             {
+                btnTaBortCat.Enabled = true;
+                btnSparaCat.Enabled = true;
+                btnUppdateraCat.Enabled = true;
+                newCategory.Enabled = false;
                 string category = categoriesView.SelectedItem.ToString();
                 List<Podcast> filteredPodcasts = podcastController.GetPodcastsbyCategory(category);
                 UpdatePodcastsViewWith(filteredPodcasts);
@@ -167,7 +185,12 @@ namespace PresentationLayer
             else
             {
                 UpdatePodcastsView();
+                btnTaBortCat.Enabled = false;
+                btnSparaCat.Enabled = false;
+                btnUppdateraCat.Enabled = false;
+                newCategory.Enabled = true;
             }
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
