@@ -259,16 +259,16 @@ namespace PresentationLayer
                     categoryController.RemoveCategoryByName(category);
                     UpdatePodcastsView();
                     UpdateCategoriesView();
-                    Unselect();
+                    UnselectRightSide();
                 }
             }
         }
 
         private void unselectCategory_Click(object sender, EventArgs e)
         {
-            Unselect();
+            UnselectRightSide();
         }
-        private void Unselect()
+        private void UnselectRightSide()
         {
             categoriesView.ClearSelected();
             btnTaBortCat.Enabled = false;
