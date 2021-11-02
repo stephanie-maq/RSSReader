@@ -99,9 +99,9 @@ namespace BuisnessLayer
             repo.Create(podcast);
         }
 
-        public List<Podcast> GetAllPodcasts()
+        public ICollection<Podcast> GetAllPodcasts()
         {
-            return repo.GetAll().ToList();
+            return repo.GetAll();
         }
 
         public Tuple<string, List<string>> GetPodcastUrlAndEpisodesByTitle(string title)
@@ -122,10 +122,10 @@ namespace BuisnessLayer
 
         public string GetEpisodeDescriptionByTitle(string title)
         {
-            bool exits = repo.GetAll().ToList().Exists(podcast => podcast.Episodes.Exists(episode => episode.Title.Equals(title)));
+            bool exists = repo.GetAll().ToList().Exists(podcast => podcast.Episodes.Exists(episode => episode.Title.Equals(title)));
             Episode ep = repo.GetAll().ToList().Select(podcast => podcast.Episodes.Find(episode => episode.Title.Equals(title))).First();
 
-            if (exits)
+            if (exists && ep.Description != null)
             {
                 return ep.Description;
             }
@@ -137,7 +137,6 @@ namespace BuisnessLayer
         {
             foreach (Podcast podcast in repo.GetAll())
             {
-                bool hi = podcast.Url.Equals(url);
                 if (podcast.Url.Equals(url))
                 {
                     podcast.Title = newTitle;

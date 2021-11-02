@@ -49,15 +49,16 @@ namespace PresentationLayer
             }
         }
 
-        private void UpdatePodcastsViewWith(List<Podcast> podcasts)
+        private void UpdatePodcastsViewWith(ICollection<Podcast> podcasts)
         {
             podcastsView.Items.Clear();
 
-            podcasts.ForEach(podcast =>
+            foreach (Podcast podcast in podcasts)
             {
                 ListViewItem podcastView = new ListViewItem("#" + podcast.Episodes.Count);
 
                 ListViewSubItem nameView;
+
                 if (titleBox.Text.Equals(""))
                 {
                     nameView = new ListViewSubItem(podcastView, podcast.Title);
@@ -77,9 +78,7 @@ namespace PresentationLayer
                 podcastsView.FullRowSelect = true;
 
                 podcastsView.Items.Add(podcastView);
-            });
-
-
+            }
         }
 
         private void UpdatePodcastsView()
@@ -165,14 +164,24 @@ namespace PresentationLayer
 
         private void updatePodcast_Click(object sender, EventArgs e)
         {
-            var hi1 = podcastController.GetAllPodcasts();
+            episodesView.Items.Clear();
+
             if (!titleBox.Text.Equals(""))
             {
                 podcastController.UpdatePodcastTitle(urlBox.Text, titleBox.Text);
             }
-            podcastController.UpdatePodcastCategory(urlBox.Text, categoryDropdown.Text);
-            podcastController.UpdatePodcastIntervalFrequency(urlBox.Text, updateFrequencyDropdown.Text);
-            var hi = podcastController.GetAllPodcasts();
+
+            if (!categoryDropdown.Text.Equals(""))
+            {
+                podcastController.UpdatePodcastCategory(urlBox.Text, categoryDropdown.Text);
+            }
+
+            if (!updateFrequencyDropdown.Text.Equals(""))
+            {
+                podcastController.UpdatePodcastIntervalFrequency(urlBox.Text, updateFrequencyDropdown.Text);
+            }
+
+            titleBox.Clear();
             UpdatePodcastsView();
         }
 
