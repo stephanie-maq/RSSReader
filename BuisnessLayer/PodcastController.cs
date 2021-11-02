@@ -90,10 +90,20 @@ namespace BuisnessLayer
         {
             Podcast podcast = await repo.FetchRemoteData(url);
 
-            int freq = FreqStringToInt(updateFrequency);
-
             podcast.Url = url;
-            podcast.UpdateFrequency = freq;
+            podcast.UpdateFrequency = FreqStringToInt(updateFrequency);
+            podcast.Category = new Category(category);
+
+            repo.Create(podcast);
+        }
+
+        public async Task FetchPodcastAsync(string title, string url, string category, string updateFrequency)
+        {
+            Podcast podcast = await repo.FetchRemoteData(url);
+
+            podcast.Title = title;
+            podcast.Url = url;
+            podcast.UpdateFrequency = FreqStringToInt(updateFrequency);
             podcast.Category = new Category(category);
 
             repo.Create(podcast);
