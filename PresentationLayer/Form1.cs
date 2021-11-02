@@ -52,7 +52,8 @@ namespace PresentationLayer
                 }
             }
 
-            else {
+            else
+            {
 
                 btnTaBortPodd.Enabled = false;
                 btnSparaPodd.Enabled = false;
@@ -187,10 +188,10 @@ namespace PresentationLayer
                 UpdatePodcastsView();
                 btnTaBortCat.Enabled = false;
                 btnSparaCat.Enabled = false;
-                btnUppdateraCat.Enabled = false;
+                btnUppdateraCat.Enabled = true;
                 newCategory.Enabled = true;
             }
-            
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
