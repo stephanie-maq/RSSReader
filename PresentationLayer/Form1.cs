@@ -111,6 +111,7 @@ namespace PresentationLayer
         {
             try
             {
+                Validation.UrlExists(urlBox.Text);
                 if (titleBox.Text.Equals(""))
                 {
                     await podcastController.FetchPodcastAsync(urlBox.Text, categoryDropdown.Text, updateFrequencyDropdown.Text);
@@ -124,10 +125,16 @@ namespace PresentationLayer
             {
                 MessageBox.Show(exn.Message);
             }
+            catch (CustomExceptions.UrlIsNotValid exn)
+            {
+
+                MessageBox.Show(exn.Message);
+            }
 
             titleBox.Clear();
             UpdatePodcastsView();
             saveChanges();
+
         }
 
 
@@ -224,17 +231,17 @@ namespace PresentationLayer
 
         private void deletePodcast_Click(object sender, EventArgs e)
         {
-            
-                DialogResult yesNo = MessageBox.Show("Är du säker att du vill ta bort podcasten? ", "Ta bort", MessageBoxButtons.YesNo);
 
-                if (yesNo == DialogResult.Yes)
-                {
-                    podcastController.DeletePodcast(urlBox.Text);
-                    UpdatePodcastsView();
-                    ClearLeftBoxes();
-                    saveChanges();
+            DialogResult yesNo = MessageBox.Show("Är du säker att du vill ta bort podcasten? ", "Ta bort", MessageBoxButtons.YesNo);
 
-                }
+            if (yesNo == DialogResult.Yes)
+            {
+                podcastController.DeletePodcast(urlBox.Text);
+                UpdatePodcastsView();
+                ClearLeftBoxes();
+                saveChanges();
+
+            }
         }
 
         private void updateCategory_Click(object sender, EventArgs e)

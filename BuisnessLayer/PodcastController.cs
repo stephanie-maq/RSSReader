@@ -88,16 +88,8 @@ namespace BuisnessLayer
 
         private void AddPodcast(Podcast podcast)
         {
-            bool exists = repo.GetAll().ToList().Exists(pod => pod.Url.Equals(podcast.Url));
-
-            if (exists)
-            {
-                throw new CustomExceptions.ItemAlreadyExistsException("Podcasten finns redan!");
-            }
-            else
-            {
-                repo.Create(podcast);
-            }
+            Validation.PodcastExists(repo.GetAll().ToList(), podcast);
+            repo.Create(podcast);
         }
 
         public async Task FetchPodcastAsync(string url, string category, string updateFrequency)
