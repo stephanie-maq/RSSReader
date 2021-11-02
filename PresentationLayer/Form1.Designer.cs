@@ -191,7 +191,7 @@ namespace PresentationLayer
             // 
             // episodesView
             // 
-            this.episodesView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.episodesView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.episodesView.FormattingEnabled = true;
             this.episodesView.ItemHeight = 16;
@@ -237,8 +237,8 @@ namespace PresentationLayer
             // 
             // episodeDescriptionView
             // 
-            this.episodeDescriptionView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.episodeDescriptionView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.episodeDescriptionView.Location = new System.Drawing.Point(656, 402);
             this.episodeDescriptionView.Margin = new System.Windows.Forms.Padding(4);
@@ -261,7 +261,7 @@ namespace PresentationLayer
             // 
             // categoriesView
             // 
-            this.categoriesView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.categoriesView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.categoriesView.FormattingEnabled = true;
             this.categoriesView.ItemHeight = 16;
@@ -274,7 +274,7 @@ namespace PresentationLayer
             // 
             // categoryTextBox
             // 
-            this.categoryTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.categoryTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.categoryTextBox.Location = new System.Drawing.Point(673, 229);
             this.categoryTextBox.Margin = new System.Windows.Forms.Padding(4);
@@ -306,7 +306,7 @@ namespace PresentationLayer
             // 
             // label8
             // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.label8.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.label8.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -318,7 +318,7 @@ namespace PresentationLayer
             // 
             // label9
             // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.label9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -401,7 +401,6 @@ namespace PresentationLayer
             this.label12.Size = new System.Drawing.Size(79, 17);
             this.label12.TabIndex = 31;
             this.label12.Text = "Podcasts:";
-            this.label12.Click += new System.EventHandler(this.label12_Click);
             // 
             // App
             // 
