@@ -114,7 +114,7 @@ namespace PresentationLayer
         {
             if (podcastsView.SelectedItems.Count == 1)
             {
-                string title = episodesView.SelectedItem.ToString().Trim();
+                string title = episodesView.SelectedItem.ToString();
                 string desc = podcastController.GetEpisodeDescriptionByTitle(title);
                 episodeDescriptionView.Text = desc;
                 episodeDescriptionView.Update();
