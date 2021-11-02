@@ -86,6 +86,20 @@ namespace BuisnessLayer
             }
         }
 
+        private void AddPodcast(Podcast podcast)
+        {
+            bool exists = repo.GetAll().ToList().Exists(pod => pod.Url.Equals(podcast.Url));
+
+            if (exists)
+            {
+                throw new CustomExceptions.ItemAlreadyExistsException("Podcasten finns redan!");
+            }
+            else
+            {
+                repo.Create(podcast);
+            }
+        }
+
         public async Task FetchPodcastAsync(string url, string category, string updateFrequency)
         {
             Podcast podcast = await repo.FetchRemoteData(url);
@@ -94,7 +108,7 @@ namespace BuisnessLayer
             podcast.UpdateFrequency = FreqStringToInt(updateFrequency);
             podcast.Category = new Category(category);
 
-            repo.Create(podcast);
+            AddPodcast(podcast);
         }
 
         public async Task FetchPodcastAsync(string title, string url, string category, string updateFrequency)
@@ -106,7 +120,7 @@ namespace BuisnessLayer
             podcast.UpdateFrequency = FreqStringToInt(updateFrequency);
             podcast.Category = new Category(category);
 
-            repo.Create(podcast);
+            AddPodcast(podcast);
         }
 
         public ICollection<Podcast> GetAllPodcasts()

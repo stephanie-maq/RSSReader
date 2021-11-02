@@ -96,13 +96,20 @@ namespace PresentationLayer
 
         private async void newPodcast_Click(object sender, EventArgs e)
         {
-            if (titleBox.Text.Equals(""))
+            try
             {
-                await podcastController.FetchPodcastAsync(urlBox.Text, categoryDropdown.Text, updateFrequencyDropdown.Text);
+                if (titleBox.Text.Equals(""))
+                {
+                    await podcastController.FetchPodcastAsync(urlBox.Text, categoryDropdown.Text, updateFrequencyDropdown.Text);
+                }
+                else
+                {
+                    await podcastController.FetchPodcastAsync(titleBox.Text, urlBox.Text, categoryDropdown.Text, updateFrequencyDropdown.Text);
+                }
             }
-            else
+            catch (CustomExceptions.ItemAlreadyExistsException exn)
             {
-                await podcastController.FetchPodcastAsync(titleBox.Text, urlBox.Text, categoryDropdown.Text, updateFrequencyDropdown.Text);
+                MessageBox.Show(exn.Message);
             }
 
             titleBox.Clear();
