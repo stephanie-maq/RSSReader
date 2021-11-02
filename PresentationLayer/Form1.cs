@@ -28,9 +28,9 @@ namespace PresentationLayer
             UpdatePodcastsView();
             UpdateCategoriesView();
             // Start 3 threads that check for updates given some intervall.
-            Task.Run(() => podcastController.UpdateWithIntervall(10));
-            Task.Run(() => podcastController.UpdateWithIntervall(30));
-            Task.Run(() => podcastController.UpdateWithIntervall(60));
+            //Task.Run(() => podcastController.UpdateWithIntervall(10));
+            //Task.Run(() => podcastController.UpdateWithIntervall(30));
+            //Task.Run(() => podcastController.UpdateWithIntervall(60));
         }
 
         private void episodesView_SelectedIndexChanged(object sender, EventArgs e)
@@ -69,7 +69,6 @@ namespace PresentationLayer
                 ListViewSubItem frequencyView = new ListViewSubItem(podcastView, podcast.UpdateFrequency.ToString());
                 ListViewSubItem categoryView = new ListViewSubItem(podcastView, podcast.Category.Name);
 
-
                 podcastView.SubItems.Add(nameView);
                 podcastView.SubItems.Add(frequencyView);
                 podcastView.SubItems.Add(categoryView);
@@ -106,7 +105,7 @@ namespace PresentationLayer
         {
             if (podcastsView.SelectedItems.Count == 1)
             {
-                string title = episodesView.SelectedItem.ToString().Split('-')[1].TrimStart();
+                string title = episodesView.SelectedItem.ToString().Trim();
                 string desc = podcastController.GetEpisodeDescriptionByTitle(title);
                 episodeDescriptionView.Text = desc;
                 episodeDescriptionView.Update();
@@ -165,12 +164,14 @@ namespace PresentationLayer
 
         private void updatePodcast_Click(object sender, EventArgs e)
         {
+            var hi1 = podcastController.GetAllPodcasts();
             if (!titleBox.Text.Equals(""))
             {
                 podcastController.UpdatePodcastTitle(urlBox.Text, titleBox.Text);
             }
             podcastController.UpdatePodcastCategory(urlBox.Text, categoryDropdown.Text);
             podcastController.UpdatePodcastIntervalFrequency(urlBox.Text, updateFrequencyDropdown.Text);
+            var hi = podcastController.GetAllPodcasts();
             UpdatePodcastsView();
         }
 
