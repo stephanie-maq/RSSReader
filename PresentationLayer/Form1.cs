@@ -27,6 +27,12 @@ namespace PresentationLayer
             categoryController.LoadFromFile();
             UpdatePodcastsView();
             UpdateCategoriesView();
+            btnTaBortCat.Enabled = false;
+            btnUppdateraCat.Enabled = false;
+            newCategory.Enabled = true;
+            btnTaBortPodd.Enabled = false;
+            btnUppdateraPodd.Enabled = false;
+            newPodcast.Enabled = true;
             // Start 3 threads that check for updates given some intervall.
             Task.Run(() => podcastController.UpdateWithIntervall(10));
             Task.Run(() => podcastController.UpdateWithIntervall(30));
@@ -234,14 +240,14 @@ namespace PresentationLayer
 
             DialogResult yesNo = MessageBox.Show("Är du säker att du vill ta bort podcasten? ", "Ta bort", MessageBoxButtons.YesNo);
 
-            if (yesNo == DialogResult.Yes)
-            {
-                podcastController.DeletePodcast(urlBox.Text);
-                UpdatePodcastsView();
-                ClearLeftBoxes();
-                saveChanges();
-
-            }
+                if (yesNo == DialogResult.Yes)
+                {
+                    podcastController.DeletePodcast(urlBox.Text);
+                    UpdatePodcastsView();
+                    ClearLeftBoxes();
+                    saveChanges();
+                    UnselectLeftSide();
+                }
         }
 
         private void updateCategory_Click(object sender, EventArgs e)
@@ -289,6 +295,13 @@ namespace PresentationLayer
             btnTaBortCat.Enabled = false;
             btnUppdateraCat.Enabled = false;
             newCategory.Enabled = true;
+        }
+        private void UnselectLeftSide()
+        {
+            categoriesView.ClearSelected();
+            btnTaBortPodd.Enabled = false;
+            btnUppdateraPodd.Enabled = false;
+            newPodcast.Enabled = true;
         }
         private void saveChanges()
         {
