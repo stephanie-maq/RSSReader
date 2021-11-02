@@ -69,7 +69,9 @@ namespace DataAccessLayer
         {
             string json = File.ReadAllText(path);
             List<Podcast> pods = JsonSerializer.Deserialize<List<Podcast>>(json);
-            podcasts = new SynchronizedCollection<Podcast>(pods);
+            SynchronizedCollection<Podcast> temp = new SynchronizedCollection<Podcast>();
+            pods.ForEach(pod => temp.Add(pod));
+            podcasts = temp;
         }
 
         SynchronizedCollection<Podcast> IRemoteRepository<Podcast>.GetAll()
