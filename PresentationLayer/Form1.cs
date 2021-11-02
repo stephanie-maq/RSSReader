@@ -188,10 +188,9 @@ namespace PresentationLayer
                 UpdatePodcastsView();
                 btnTaBortCat.Enabled = false;
                 btnSparaCat.Enabled = false;
-                btnUppdateraCat.Enabled = true;
+                btnUppdateraCat.Enabled = false;
                 newCategory.Enabled = true;
             }
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -260,15 +259,23 @@ namespace PresentationLayer
                     categoryController.RemoveCategoryByName(category);
                     UpdatePodcastsView();
                     UpdateCategoriesView();
+                    Unselect();
                 }
             }
         }
 
         private void unselectCategory_Click(object sender, EventArgs e)
         {
-            categoriesView.ClearSelected();
+            Unselect();
         }
-
+        private void Unselect()
+        {
+            categoriesView.ClearSelected();
+            btnTaBortCat.Enabled = false;
+            btnSparaCat.Enabled = false;
+            btnUppdateraCat.Enabled = false;
+            newCategory.Enabled = true;
+        }
         private void savePodcasts_Click(object sender, EventArgs e)
         {
             categoryController.SaveAllCategories();
