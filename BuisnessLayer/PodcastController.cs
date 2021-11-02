@@ -55,27 +55,36 @@ namespace BuisnessLayer
             repo.Load(saveFilePath);
         }
 
-        private void Foo(int intervall)
-        {
-            //TODO:
-            int ms = intervall * 100;
-            Task.Delay(ms);
-
-        }
-
-        /*public void KeepPodcastsUpToDate()
+        // Always executing method. Should be called in a separate thread.
+        public async void UpdateWithIntervall(int intervall)
         {
             while (true)
             {
-                var podcasts = repo.GetAll();
-                podcasts.ForEach(podcast =>
+                int ms = intervall * 100;
+                await Task.Delay(ms);
+
+                List<Podcast> toUpdate = new List<Podcast>();
+
+                switch (intervall)
                 {
-                    int freq = podcast.UpdateFrequency;
+                    case 10:
+                        toUpdate = repo.GetAll().Where(p => p.UpdateFrequency == 10).ToList();
+                        break;
+                    case 30:
+                        toUpdate = repo.GetAll().Where(p => p.UpdateFrequency == 30).ToList();
+                        break;
+                    case 60:
+                        toUpdate = repo.GetAll().Where(p => p.UpdateFrequency == 60).ToList();
+                        break;
+                }
 
-
-                });
+                foreach (Podcast currentPodcast in toUpdate)
+                {
+                    Podcast newPodcast = await repo.FetchRemoteData(currentPodcast.Url);
+                    currentPodcast.Episodes = newPodcast.Episodes;
+                }
             }
-        }*/
+        }
 
         public async Task FetchPodcastAsync(string url, string category, string updateFrequency)
         {
@@ -92,19 +101,31 @@ namespace BuisnessLayer
 
         public List<Podcast> GetAllPodcasts()
         {
-            return repo.GetAll();
+            return repo.GetAll().ToList();
         }
-        public Tuple<bool, Podcast> GetPodcastByTitle(string title)
+        public Tuple<string, List<string>> GetPodcastUrlAndEpisodesByTitle(string title)
         {
-            bool exits = repo.GetAll().Exists(podcast => podcast.Title.Equals(title));
-            Podcast pod = repo.GetAll().Find(podcast => podcast.Title.Equals(title));
-            return Tuple.Create(exits, pod);
+            bool exits = repo.GetAll().ToList().Exists(podcast => podcast.Title.Equals(title));
+            Podcast pod = repo.GetAll().ToList().Find(podcast => podcast.Title.Equals(title));
+            pod.Episodes.Reverse();
+            List<string> eps = new List<string>();
+            if (exits)
+            {
+                for (int i = 0; i < pod.Episodes.Count; i++)
+                {
+                    int episodeNumber = i + 1;
+                    string episodeName = pod.Episodes[i].StringToDisplay();
+                    eps.Add($"#{episodeNumber} - {episodeName}");
+                }
+            }
+
+            return Tuple.Create(pod.Url, eps);
         }
 
         public string GetEpisodeDescriptionByTitle(string title)
         {
-            bool exits = repo.GetAll().Exists(podcast => podcast.Episodes.Exists(episode => episode.Title.Equals(title)));
-            Episode ep = repo.GetAll().Select(podcast => podcast.Episodes.Find(episode => episode.Title.Equals(title))).First();
+            bool exits = repo.GetAll().ToList().Exists(podcast => podcast.Episodes.Exists(episode => episode.Title.Equals(title)));
+            Episode ep = repo.GetAll().ToList().Select(podcast => podcast.Episodes.Find(episode => episode.Title.Equals(title))).First();
 
             if (exits)
             {
@@ -149,13 +170,13 @@ namespace BuisnessLayer
 
         public void DeletePodcast(string url)
         {
-            int toBeRemoved = repo.GetAll().FindIndex(podcast => podcast.Url.Equals(url));
+            int toBeRemoved = repo.GetAll().ToList().FindIndex(podcast => podcast.Url.Equals(url));
             repo.Delete(toBeRemoved);
         }
 
         public void UpdateCategoryTitle(string oldTitle, string newTitle)
         {
-            repo.GetAll().ForEach(podcast =>
+            repo.GetAll().ToList().ForEach(podcast =>
             {
                 if (podcast.Category.Name.Equals(oldTitle))
                 {
@@ -168,7 +189,7 @@ namespace BuisnessLayer
         {
             List<int> toDelete = new List<int>();
 
-            repo.GetAll().ForEach(podcast =>
+            repo.GetAll().ToList().ForEach(podcast =>
             {
                 if (podcast.Category.Name.Equals(category))
                 {
@@ -187,8 +208,8 @@ namespace BuisnessLayer
 
         public void SaveAllPodcasts()
         {
+            repo.GetAll().ToList().ForEach(podcast => podcast.IsSaved = true);
             repo.Save(saveFilePath);
-            repo.GetAll().ForEach(podcast => podcast.IsSaved = true);
         }
 
         public bool IsAllSaved()

@@ -27,7 +27,10 @@ namespace PresentationLayer
             categoryController.LoadFromFile();
             UpdatePodcastsView();
             UpdateCategoriesView();
-            //Task.Run(() => podcastController.KeepPodcastsUpToDate());
+            // Start 3 threads that check for updates given some intervall.
+            Task.Run(() => podcastController.UpdateWithIntervall(10));
+            Task.Run(() => podcastController.UpdateWithIntervall(30));
+            Task.Run(() => podcastController.UpdateWithIntervall(60));
         }
 
         private void episodesView_SelectedIndexChanged(object sender, EventArgs e)
@@ -35,18 +38,12 @@ namespace PresentationLayer
             if (podcastsView.SelectedItems.Count == 1)
             {
                 string title = podcastsView.SelectedItems[0].SubItems[1].Text;
-                (bool exists, Podcast podcast) = podcastController.GetPodcastByTitle(title);
-                podcast.Episodes.Reverse();
+                (string url, List<string> eps) = podcastController.GetPodcastUrlAndEpisodesByTitle(title);
 
-                if (exists)
+                if (eps.Count > 0)
                 {
-                    for (int i = 0; i < podcast.Episodes.Count; i++)
-                    {
-                        int episodeNumber = i + 1;
-                        string episodeName = podcast.Episodes[i].Title;
-                        episodesView.Items.Add($"#{episodeNumber} - {episodeName}");
-                    }
-                    urlBox.Text = podcast.Url;
+                    eps.ForEach(ep => episodesView.Items.Add(ep));
+                    urlBox.Text = url;
                 }
             }
         }

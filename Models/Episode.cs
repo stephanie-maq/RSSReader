@@ -11,5 +11,10 @@ namespace Models
             base.Title = title;
             base.Description = description;
         }
+
+        public override string StringToDisplay()
+        {
+            return Title;
+        }
     }
 }

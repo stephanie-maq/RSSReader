@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.ServiceModel.Syndication;
@@ -11,11 +12,12 @@ namespace DataAccessLayer
 {
     public class PodcastRepository : IRemoteRepository<Podcast>
     {
-        List<Podcast> podcasts;
+        // A collection that is thread-safe for multiple thread workflows. Mostly like a list.
+        SynchronizedCollection<Podcast> podcasts;
 
         public PodcastRepository()
         {
-            podcasts = new List<Podcast>();
+            podcasts = new SynchronizedCollection<Podcast>();
         }
 
         public void Create(Podcast podcast)
@@ -30,12 +32,13 @@ namespace DataAccessLayer
 
         public List<Podcast> GetAll()
         {
-            return podcasts;
+            return podcasts.ToList();
         }
+
 
         public int GetIndex(Podcast pod2)
         {
-            return podcasts.FindIndex(podcast => podcast.Title.Equals(pod2.Title) && podcast.Category.Name.Equals(pod2.Category.Name));
+            return podcasts.ToList().FindIndex(podcast => podcast.Title.Equals(pod2.Title) && podcast.Category.Name.Equals(pod2.Category.Name));
         }
 
         public void Save(string path)
@@ -66,7 +69,12 @@ namespace DataAccessLayer
         {
             string json = File.ReadAllText(path);
             List<Podcast> pods = JsonSerializer.Deserialize<List<Podcast>>(json);
-            podcasts = new List<Podcast>(pods);
+            podcasts = new SynchronizedCollection<Podcast>(pods);
+        }
+
+        SynchronizedCollection<Podcast> IRemoteRepository<Podcast>.GetAll()
+        {
+            return podcasts;
         }
     }
 }

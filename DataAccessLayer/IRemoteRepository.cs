@@ -7,6 +7,7 @@ namespace DataAccessLayer
 {
     public interface IRemoteRepository<T> : IRepository<T> where T : class
     {
+        new SynchronizedCollection<T> GetAll();
         Task<T> FetchRemoteData(string url);
     }
 }

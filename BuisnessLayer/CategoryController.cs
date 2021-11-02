@@ -83,8 +83,8 @@ namespace BuisnessLayer
 
         public void SaveAllCategories()
         {
-            repo.Save(saveFilePath);
             repo.GetAll().ForEach(category => category.IsSaved = true);
+            repo.Save(saveFilePath);
         }
 
         public bool IsAllSaved()
