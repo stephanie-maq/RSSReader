@@ -67,18 +67,14 @@ namespace BuisnessLayer
 
         public void RemoveCategoryByName(string name)
         {
-            List<int> toDelete = new List<int>();
-
-            repo.GetAll().ForEach(category =>
+            foreach (Category category in repo.GetAll())
             {
                 if (category.Name.Equals(name))
                 {
-                    int index = repo.GetIndex(category);
-                    toDelete.Add(index);
+                    repo.Delete(repo.GetIndex(category));
+                    break;
                 }
-            });
-
-            toDelete.ForEach(index => repo.Delete(index));
+            }
         }
 
         public void SaveAllCategories()

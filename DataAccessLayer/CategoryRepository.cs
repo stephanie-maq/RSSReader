@@ -50,5 +50,10 @@ namespace DataAccessLayer
             string json = JsonSerializer.Serialize(categories);
             File.WriteAllText(path, json);
         }
+
+        public void SetAll(List<Category> l)
+        {
+            categories = l;
+        }
     }
 }

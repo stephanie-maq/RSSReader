@@ -200,18 +200,7 @@ namespace BuisnessLayer
 
         public void RemovePodcastsByCategory(string category)
         {
-            List<int> toDelete = new List<int>();
-
-            repo.GetAll().ToList().ForEach(podcast =>
-            {
-                if (podcast.Category.Name.Equals(category))
-                {
-                    int index = repo.GetIndex(podcast);
-                    toDelete.Add(index);
-                }
-            });
-
-            toDelete.ForEach(index => repo.Delete(index));
+            repo.SetAll(repo.GetAll().Where(podcast => !podcast.Category.Name.Equals(category)).ToList());
         }
 
         public List<Podcast> GetPodcastsbyCategory(string category)

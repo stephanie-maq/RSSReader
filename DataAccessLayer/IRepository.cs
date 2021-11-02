@@ -11,6 +11,7 @@ namespace DataAccessLayer
         void Delete(int index);
         int GetIndex(T entity);
         List<T> GetAll();
+        void SetAll(List<T> l);
     }
 }
 

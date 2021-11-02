@@ -13,7 +13,7 @@ namespace DataAccessLayer
     public class PodcastRepository : IRemoteRepository<Podcast>
     {
         // A collection that is thread-safe for multiple thread workflows. Mostly like a list.
-        SynchronizedCollection<Podcast> podcasts;
+        private SynchronizedCollection<Podcast> podcasts;
 
         public PodcastRepository()
         {
@@ -77,6 +77,13 @@ namespace DataAccessLayer
         SynchronizedCollection<Podcast> IRemoteRepository<Podcast>.GetAll()
         {
             return podcasts;
+        }
+
+        public void SetAll(List<Podcast> l)
+        {
+            var temp = new SynchronizedCollection<Podcast>();
+            l.ForEach(elem => temp.Add(elem));
+            podcasts = temp;
         }
     }
 }
