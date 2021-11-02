@@ -28,9 +28,9 @@ namespace PresentationLayer
             UpdatePodcastsView();
             UpdateCategoriesView();
             // Start 3 threads that check for updates given some intervall.
-            //Task.Run(() => podcastController.UpdateWithIntervall(10));
-            //Task.Run(() => podcastController.UpdateWithIntervall(30));
-            //Task.Run(() => podcastController.UpdateWithIntervall(60));
+            Task.Run(() => podcastController.UpdateWithIntervall(10));
+            Task.Run(() => podcastController.UpdateWithIntervall(30));
+            Task.Run(() => podcastController.UpdateWithIntervall(60));
         }
 
         private void episodesView_SelectedIndexChanged(object sender, EventArgs e)
