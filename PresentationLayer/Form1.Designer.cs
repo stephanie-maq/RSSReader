@@ -377,7 +377,7 @@ namespace PresentationLayer
             this.btnUppdateraPodd.Name = "btnUppdateraPodd";
             this.btnUppdateraPodd.Size = new System.Drawing.Size(100, 28);
             this.btnUppdateraPodd.TabIndex = 27;
-            this.btnUppdateraPodd.Text = "Uppdatera";
+            this.btnUppdateraPodd.Text = "Uppdatera ...";
             this.btnUppdateraPodd.UseVisualStyleBackColor = true;
             this.btnUppdateraPodd.Click += new System.EventHandler(this.updatePodcast_Click);
             // 
@@ -388,7 +388,7 @@ namespace PresentationLayer
             this.btnUppdateraCat.Name = "btnUppdateraCat";
             this.btnUppdateraCat.Size = new System.Drawing.Size(100, 28);
             this.btnUppdateraCat.TabIndex = 28;
-            this.btnUppdateraCat.Text = "Uppdatera";
+            this.btnUppdateraCat.Text = "Uppdatera ...";
             this.btnUppdateraCat.UseVisualStyleBackColor = true;
             this.btnUppdateraCat.Click += new System.EventHandler(this.updateCategory_Click);
             // 
